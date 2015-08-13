@@ -1,6 +1,89 @@
-#!/usr/bin/env ruby
+#! /usr/bin/env ruby
 
 # Prerequisites (managed by bundler)
 require 'rubygems'
 require 'bundler/setup'
+require 'thor'
+require 'json'
+require 'builder'
 
+class Twee2 < Thor
+  package_name 'Twee2'
+  map '-h' => :help
+  map '--help' => :help
+
+  desc 'build [INPUT] [OUTPUT]', 'compiles a Twee-like file into Twee2-like output'
+  method_option :format, type: :string, default: 'Harlowe'
+  def build(input, output)
+    # Read and parse format file
+    format_file = File::read("storyFormats/#{options[:format]}/format.js")
+    format_data = format_file.match(/(["'])source\1 *: *(["']).*?[^\\]\2/)[0]
+    format_data_for_json = "\{#{format_data}\}"
+    result = JSON.parse(format_data_for_json)['source']
+    # Read and parse input file
+    passages, current_passage = {}, nil
+    File::read(input).each_line do |line| # REFACTOR: switch this to using regular expressions, why not?
+      if line =~ /^:: *([^\[]*?) *(\[(.*?)\])? *[\r\n]+$/
+        passages[current_passage = $1.strip] = { tags: ($3 || '').split(' '), content: '', exclude_from_output: false, pid: nil}
+      elsif current_passage
+        passages[current_passage][:content] << line
+      end
+    end
+    passages.each_key{|k| passages[k][:content].strip!} # Strip excessive trailing whitespace
+    # Extract 'special' passages and mark them as not being included in output
+    story_name, story_css, story_js, pid, story_start_pid = 'An unnamed story', '', '', 0, 1
+    passages.each_key do |k|
+      if k == 'StoryTitle'
+        story_name = passages[k][:content]
+        passages[k][:exclude_from_output] = true
+      elsif %w{StorySubtitle StoryAuthor StoryMenu StorySettings StoryIncludes}.include? k
+        puts "WARNING: ignoring passage '#{k}'"
+        passages[k][:exclude_from_output] = true
+      elsif passages[k][:tags].include? 'stylesheet'
+        story_css << "#{passages[k][:content]}\n"
+        passages[k][:exclude_from_output] = true
+      elsif passages[k][:tags].include? 'script'
+        story_js << "#{passages[k][:content]}\n"
+        passages[k][:exclude_from_output] = true
+      elsif k == 'Start'
+        passages[k][:pid] = (pid += 1)
+        story_start_pid = pid
+      else
+        passages[k][:pid] = (pid += 1)
+      end
+    end
+    # Generate XML in Twine 2 format
+    story_data = Builder::XmlMarkup.new
+    # TODO: what is tw-storydata's "options" attribute for?
+    story_data.tag!('tw-storydata', { name: story_name, startnode: story_start_pid, creator: 'Twee2', 'creator-version' => '0.1', ifid: 'TODO', format: options[:format], options: '' }) do
+      story_data.style(story_css, role: 'stylesheet', id: 'twine-user-stylesheet', type: 'text/twine-css')
+      story_data.script(story_js, role: 'script', id: 'twine-user-script', type: 'text/twine-javascript')
+      passages.each do |k,v|
+        unless v[:exclude_from_output]
+          story_data.tag!('tw-passagedata', { pid: v[:pid], name: k, tags: v[:tags].join(' ') }, v[:content])
+        end
+      end
+    end
+    # Produce output file
+    result.gsub!('{{STORY_NAME}}', story_name)
+    result.gsub!('{{STORY_DATA}}', story_data.target!)
+    File::open(output, 'w') do |out|
+      out.print result
+    end
+  end
+
+  desc 'formats', 'lists understood output formats'
+  def formats
+    puts "I understand the following output formats:"
+    puts Dir.open('storyFormats').to_a.sort.reject{|d|d=~/^\./}.map{|f|" * #{f}"}.join("\n")
+  end
+
+  desc 'help', 'shows usage instructions'
+  def help
+    puts File.read('doc/usage.txt')
+  end
+
+  default_task :help
+end
+
+Twee2.start

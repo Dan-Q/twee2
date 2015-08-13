@@ -1,0 +1,13 @@
+Twee2 - command-line compiler turning Twee-like files into Twine2-like output.
+-------------------------------------------------------------------------------
+Usage:
+
+  twee2 build [input.tw2] [output.html] [[--format=story_format]]
+    Compiles the specified twee-like file into an output file. optionally
+    specify the format (Harlowe, Paperthin, Snowman, SugarCube, etc.).
+
+  twee2 formats
+    Lists the output formats that are understood.
+
+  twee2 help
+    Displays this message.
