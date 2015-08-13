@@ -1,17 +1,11 @@
-#! /usr/bin/env ruby
+#!/usr/bin/env ruby
 
-# Prerequisites (managed by bundler)
-require 'rubygems'
-require 'bundler/setup'
-require 'thor'
-require 'json'
-require 'builder'
-require 'filewatcher'
+require 'twee2'
 
 # Constants
 DEFAULT_FORMAT = 'Harlowe'
 
-class Twee2 < Thor
+class Twee2CLI < Thor
   package_name 'Twee2'
   map '-h' => :help
   map '--help' => :help
@@ -97,10 +91,11 @@ class Twee2 < Thor
 
   desc 'help', 'shows usage instructions'
   def help
+    puts "Twee2 #{Twee2::VERSION}"
     puts File.read('doc/usage.txt')
   end
 
   default_task :help
 end
 
-Twee2.start
+Twee2CLI.start

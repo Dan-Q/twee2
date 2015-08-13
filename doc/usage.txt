@@ -1,4 +1,4 @@
-Twee2 - command-line compiler turning Twee-like files into Twine2-like output.
+Command-line compiler turning Twee-like files into Twine2-like output.
 -------------------------------------------------------------------------------
 Usage:
 
