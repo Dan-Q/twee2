@@ -18,18 +18,7 @@ a.internalLink:hover { color: white !important; background-color: darkblue !impo
 #storyAuthor { font-size: 75% !important; }
 #credits { padding-top: 0em !important; }
 </style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Start" tags="">You've somehow found your way to the center of town.
-(silently)
-(set: $metvendor to "no")
-(set: $advised to "no")
-(set: $explainedgems to "no")
-(set: $noticedcrest to "no")
-(set: $foundpassword to "no")
-(set: $keyfell to "no")
-(set: $vaultkey to "no")
-(set: $torch to "no")
-(set: $littorch to "no")
-(set: $palacekey to "no")
-(endsilently)
+(set: $metvendor to "no")(set: $advised to "no")(set: $explainedgems to "no")(set: $noticedcrest to "no")(set: $foundpassword to "no")(set: $keyfell to "no")(set: $vaultkey to "no")(set: $torch to "no")(set: $littorch to "no")(set: $palacekey to "no")
 (display: 'Plaza')</tw-passagedata><tw-passagedata pid="2" name="Plaza" tags="">The glittering [[Palace]] dominates the plaza. A haggard-looking [[signpost|Signpost]] stands in the center of the pavement. Around it is a cluster of buildings, most of them abandoned-looking: you can make out an [[Armory]] and a [[Bank]].</tw-passagedata><tw-passagedata pid="3" name="Palace" tags="">Though its gleaming, windowless walls reveal nothing, you are certain of some kind of presence beyond the Palace's wide - and (if: $palacekey is "yes")[[[locked|Opened gate]]](else:)[(if: $vaultkey is "yes")[[[locked|Wrong key]]](else:)[locked]] - gate.
 
 (display: 'Plaza')</tw-passagedata><tw-passagedata pid="4" name="Armory" tags="">What first catches your eye is the large [[Vault]]. The rest of the building is taken up with stalls, most of them empty. But you can see one [[Vendor]] hunched over a counter, and in another stall, a [[figure|Guardian]] marching back and forth.

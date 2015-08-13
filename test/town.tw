@@ -1,17 +1,6 @@
 :: Start
 You've somehow found your way to the center of town.
-(silently)
-(set: $metvendor to "no")
-(set: $advised to "no")
-(set: $explainedgems to "no")
-(set: $noticedcrest to "no")
-(set: $foundpassword to "no")
-(set: $keyfell to "no")
-(set: $vaultkey to "no")
-(set: $torch to "no")
-(set: $littorch to "no")
-(set: $palacekey to "no")
-(endsilently)
+(set: $metvendor to "no")(set: $advised to "no")(set: $explainedgems to "no")(set: $noticedcrest to "no")(set: $foundpassword to "no")(set: $keyfell to "no")(set: $vaultkey to "no")(set: $torch to "no")(set: $littorch to "no")(set: $palacekey to "no")
 (display: 'Plaza')
 
 
@@ -21,6 +10,7 @@ The glittering [[Palace]] dominates the plaza. A haggard-looking [[signpost|Sign
 
 :: StoryTitle
 Town
+
 
 
 :: Style [stylesheet]

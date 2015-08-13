@@ -6,6 +6,10 @@ require 'bundler/setup'
 require 'thor'
 require 'json'
 require 'builder'
+require 'filewatcher'
+
+# Constants
+DEFAULT_FORMAT = 'Harlowe'
 
 class Twee2 < Thor
   package_name 'Twee2'
@@ -13,7 +17,7 @@ class Twee2 < Thor
   map '--help' => :help
 
   desc 'build [INPUT] [OUTPUT]', 'compiles a Twee-like file into Twee2-like output'
-  method_option :format, type: :string, default: 'Harlowe'
+  method_option :format, type: :string, default: DEFAULT_FORMAT
   def build(input, output)
     # Read and parse format file
     format_file = File::read("storyFormats/#{options[:format]}/format.js")
@@ -69,6 +73,19 @@ class Twee2 < Thor
     result.gsub!('{{STORY_DATA}}', story_data.target!)
     File::open(output, 'w') do |out|
       out.print result
+    end
+    puts "Done"
+  end
+
+  desc 'watch', 'like "build", but watches for changes and automatically rebuilds on the fly'
+  method_option :format, type: :string, default: DEFAULT_FORMAT
+  def watch(input, output)
+    puts "Compiling #{output}"
+    build(input, output)
+    puts "Watching #{input}"
+    FileWatcher.new(input).watch do
+      puts "Recompiling #{output}"
+      build(input, output)
     end
   end
 
