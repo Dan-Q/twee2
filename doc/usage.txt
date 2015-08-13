@@ -6,6 +6,10 @@ Usage:
     Compiles the specified twee-like file into an output file. optionally
     specify the format (Harlowe, Paperthin, Snowman, SugarCube, etc.).
 
+  twee2 watch [input.tw2] [output.html] [[--format=story_format]]
+    Syntax is the same as build, but twee2 will automatically watch for
+    changes to your input file and recompile dynamically.
+
   twee2 formats
     Lists the output formats that are understood.
 
