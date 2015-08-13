@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+# Prerequisites (managed by bundler)
+require 'rubygems'
+require 'bundler/setup'
+
