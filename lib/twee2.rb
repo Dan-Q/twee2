@@ -12,7 +12,7 @@ module Twee2
   # Constants
   DEFAULT_FORMAT = 'Harlowe'
 
-  def self.build(input, output, options)
+  def self.build(input, output, options = {})
     # Read and parse format file
     format_file = File::read(buildpath("storyFormats/#{options[:format]}/format.js"))
     format_data = format_file.match(/(["'])source\1 *: *(["']).*?[^\\]\2/)[0]
@@ -71,13 +71,13 @@ module Twee2
     puts "Done"
   end
 
-  def self.watch(input, output, options)
+  def self.watch(input, output, options = {})
     puts "Compiling #{output}"
-    build(input, output)
+    build(input, output, options)
     puts "Watching #{input}"
     FileWatcher.new(input).watch do
       puts "Recompiling #{output}"
-      build(input, output)
+      build(input, output, options)
     end
   end
 
