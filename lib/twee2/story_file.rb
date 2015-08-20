@@ -5,6 +5,7 @@ module Twee2
     HAML_OPTIONS = {
       remove_whitespace: true
     }
+    Tilt::CoffeeScriptTemplate.default_bare = true # bare mode for HAML :coffeescript blocks
     COFFEESCRIPT_OPTIONS = {
       bare: true
     }
