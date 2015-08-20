@@ -12,19 +12,49 @@ I love the direction that Twine 2 has been going in, in regard to ditching the o
 
 Right now Twee2 doesn't even support the diversity of original Twee, and it's possible that it never will. As the need arises, though, I may add additional features that seemed to be 'missing' from Twee, to me.
 
+I'd love to hear your thoughts about the future of this gem.
+
 ## Installation
 
-Run 'rake install' to build the gem locally. No gems are yet made available via RubyGems. Did I mention that this was experimental?
+Install using gem
+
+    gem install twee2
 
 ## Usage
 
 To compile a Twee file into a HTML file using the default format (Harlowe):
-twee2 build inputfile.twee outputfile.html
+
+    twee2 build inputfile.twee outputfile.html
 
 To use a specific format, e.g. Snowman:
-twee2 build inputfile.twee outputfile.html --format=Snowman
+
+    twee2 build inputfile.twee outputfile.html --format=Snowman
 
 For additional features (e.g. listing known formats, watch-for-changes mode), run twee2 without any parameters.
+
+## Special features
+
+Aside from the regular Twee features, Twee2 provides the following enhancements:
+
+### HAML support
+
+You can declare your passages using [HAML markup](http://haml.info/docs/yardoc/file.REFERENCE.html) by applying a 'haml' tag to the passage, e.g.:
+
+```
+::DarkCorridor [haml]
+%p
+  The floorboards creak beneath your feet as you creep into the darkness of the corridor.
+```
+
+### Coffeescript
+
+If you'd rather write your Javascript in [Coffeescript](http://coffeescript.org/) style, just use a HAML ':coffeescript' block or tag your 'script' block with 'coffee':
+
+```
+::MyJavascripts [coffee script]
+  $ ->
+    alert 'Welcome to my game!'
+```
 
 ## Notes
 

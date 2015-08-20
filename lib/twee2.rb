@@ -10,10 +10,15 @@ require 'thor'
 require 'json'
 require 'builder'
 require 'filewatcher'
+require 'haml'
+require 'coffee_script'
 
 module Twee2
   # Constants
   DEFAULT_FORMAT = 'Harlowe'
+  HAML_OPTIONS = {
+    remove_whitespace: true
+  }
 
   def self.build(input, output, options = {})
     # Read and parse format file
@@ -31,6 +36,19 @@ module Twee2
       end
     end
     passages.each_key{|k| passages[k][:content].strip!} # Strip excessive trailing whitespace
+    # Run each passage through a preprocessor, if required
+    passages.each_key do |k|
+      # HAML
+      if passages[k][:tags].include? 'haml'
+        passages[k][:content] = Haml::Engine.new(passages[k][:content], HAML_OPTIONS).render
+        passages[k][:tags].delete 'haml'
+      end
+      # Coffeescript
+      if passages[k][:tags].include? 'coffee'
+        passages[k][:content] = CoffeeScript.compile(passages[k][:content])
+        passages[k][:tags].delete 'coffee'
+      end
+    end
     # Extract 'special' passages and mark them as not being included in output
     story_name, story_css, story_js, pid, story_start_pid = 'An unnamed story', '', '', 0, 1
     passages.each_key do |k|
