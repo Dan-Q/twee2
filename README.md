@@ -14,6 +14,10 @@ Right now Twee2 doesn't even support the diversity of original Twee, and it's po
 
 I'd love to hear your thoughts about the future of this gem.
 
+## Prerequisites
+
+You'll need Ruby. Instructions on easily installing it on MacOS, Windows, and Linux can be found at https://www.ruby-lang.org/en/documentation/installation/.
+
 ## Installation
 
 Install using gem
@@ -21,6 +25,10 @@ Install using gem
     gem install twee2
 
 ## Usage
+
+To see usage examples and fuller instructions (documentation on this page is lacking, but as-yet no documentation is complete):
+
+    twee2
 
 To compile a Twee file into a HTML file using the default format (Harlowe):
 
@@ -35,6 +43,31 @@ For additional features (e.g. listing known formats, watch-for-changes mode), ru
 ## Special features
 
 Aside from the regular Twee features, Twee2 provides the following enhancements:
+
+### Multi-file inclusion (super-experimental)
+
+You can combine multiple input files into one via either (or both!) of two different methods:
+
+#### StoryIncludes
+
+Borrowed from Twee: simply list the files to include in the special StoryIncludes passage. Each will be appended to the end of your source file on compilation.
+
+```
+::StoryIncludes
+my-sub-story.tw2
+```
+
+Looking for something more-powerful? Use ::@include-syntax, e.g.:
+
+```
+::IncompleteRoom [haml]
+%p
+  This room is incomplete. Come back later.
+:coffeescript
+  ::@include incomplete-room-js.coffee
+```
+
+The requested file will be nested directly in place. Indent levels will be preserved, which makes it safe for use within HAML, Coffeescript, and SASS. This makes it easy to re-use content throughout your story by simply inserting it in multiple places.
 
 ### HAML support
 
@@ -55,6 +88,21 @@ If you'd rather write your Javascript in [Coffeescript](http://coffeescript.org/
   $ ->
     alert 'Welcome to my game!'
 ```
+
+### SASS/SCSS stylesheets
+
+Prefer SASS for your stylesheets? Just use a 'sass' or 'scss' tag alongside your 'stylesheet' tag, or use a :sass or :scss block in HAML:
+
+```
+::MyStylesheet [scss stylesheet]
+body {
+  color: #eee;
+}
+tw-passage {
+  tw-link {
+    color: red;
+  }
+}
 
 ## Notes
 

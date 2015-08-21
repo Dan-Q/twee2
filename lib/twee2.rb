@@ -1,8 +1,8 @@
 Encoding.default_external = Encoding.default_internal = Encoding::UTF_8
 
 # Prerequisites (managed by bundler)
-%w{rubygems bundler/setup thor json builder filewatcher haml coffee_script
-   twee2/version twee2/story_format twee2/story_file}.each do |prerequisite|
+%w{rubygems bundler/setup thor json builder filewatcher haml coffee_script nokogiri open-uri singleton sass
+   twee2/version twee2/story_format twee2/story_file twee2/decompiler twee2/build_config}.each do |prerequisite|
   require prerequisite
 end
 
@@ -12,12 +12,12 @@ module Twee2
 
   def self.build(input, output, options = {})
     # Read and parse format file
-    story_format = StoryFormat::new(options[:format])
+    build_config.story_format = StoryFormat::new(options[:format])
     # Read and parse input file
-    story_file = StoryFile::new(input)
+    build_config.story_file = StoryFile::new(input)
     # Produce output file
     File::open(output, 'w') do |out|
-      out.print story_format.compile(story_file)
+      out.print build_config.story_format.compile
     end
     puts "Done"
   end
@@ -35,6 +35,14 @@ module Twee2
   def self.formats
     puts "I understand the following output formats:"
     puts StoryFormat.known_names.join("\n")
+  end
+
+  # Reverse-engineers a Twee2/Twine 2 output HTML file into a Twee2 source file
+  def self.decompile(url, output)
+    File::open(output, 'w') do |out|
+      out.print Decompiler::decompile(url)
+    end
+    puts "Done"
   end
 
   def self.help

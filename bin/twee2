@@ -24,6 +24,11 @@ class Twee2CLI < Thor
     Twee2::formats
   end
 
+  desc 'decompile [URL] [OUTPUT]', 'reverse-engineers Twee2/Twine 2 HTML output into a Twee2 source file'
+  def decompile(url, output)
+    Twee2::decompile(url, output)
+  end
+
   desc 'help', 'shows usage instructions'
   def help
     Twee2::help

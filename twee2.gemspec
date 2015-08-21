@@ -34,6 +34,8 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'execjs', '~> 2.6', '>= 2.6.0'
   spec.add_runtime_dependency 'filewatcher', '~> 0.5', '>= 0.5.2'
   spec.add_runtime_dependency 'haml', '~> 4.0', '>= 4.0.7'
+  spec.add_runtime_dependency 'nokogiri', '~> 1.6', '>= 1.6.6.2'
+  spec.add_runtime_dependency 'sass', '~> 3.2', '>= 3.2.19'
   spec.add_runtime_dependency 'thor', '~> 0.19', '>= 0.19.1'
   spec.add_runtime_dependency 'tilt', '~> 2.0', '>= 2.0.1'
   spec.add_runtime_dependency 'trollop', '~> 2.1', '>= 2.1.2'

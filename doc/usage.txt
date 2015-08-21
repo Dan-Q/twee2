@@ -13,5 +13,9 @@ Usage:
   twee2 formats
     Lists the output formats that are understood.
 
+  twee2 decompile [URL] [output.tw2]
+    Decompiles a Twee2/Twine 2 HTML output file at a specified URL into
+    a Twee2 source file.
+
   twee2 help
     Displays this message.
