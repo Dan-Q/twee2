@@ -1,8 +1,10 @@
 Encoding.default_external = Encoding.default_internal = Encoding::UTF_8
 
 # Prerequisites (managed by bundler)
-%w{rubygems bundler/setup thor json builder filewatcher haml coffee_script nokogiri open-uri singleton sass
-   twee2/version twee2/story_format twee2/story_file twee2/decompiler twee2/build_config}.each do |prerequisite|
+%w{rubygems haml singleton
+  twee2/version twee2/story_format twee2/story_file twee2/decompiler twee2/build_config
+  bundler/setup
+  thor json builder filewatcher coffee_script nokogiri open-uri sass}.each do |prerequisite|
   require prerequisite
 end
 

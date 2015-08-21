@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
     but who want to take advantage of the new features in Twine 2.
     Note that this is NOT a Twine 1 to Twine 2 converter, although parts of its functionality go some way to achieving this goal.
   EOF
-  spec.homepage      = "https://danq.me/"
+  spec.homepage      = "https://github.com/avapoet/twee2"
   spec.license       = "GPL-2.0"
 
   spec.files         = `git ls-files -z`.split("\x0")
