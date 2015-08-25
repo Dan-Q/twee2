@@ -21,7 +21,12 @@ module Twee2
 
     # Returns an array containing the known StoryFormat names
     def self.known_names
-      Dir.open(Twee2::buildpath('storyFormats')).to_a.sort.reject{|d|d=~/^\./}.map{|f|" * #{f}"}
+      Dir.open(Twee2::buildpath('storyFormats')).to_a.sort.reject{|d|d=~/^\./}.map do |name|
+        format_file_path = Twee2::buildpath("storyFormats/#{name}/format.js")
+        format_file = File::read(format_file_path)
+        version = format_file.match(/(["'])version\1 *: *(["'])(.*?[^\\])\2/)[3]
+        " * #{name} (#{version})"
+      end
     end
   end
 end
