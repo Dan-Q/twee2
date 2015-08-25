@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'haml'
 require 'coffee_script'
 require 'sass'

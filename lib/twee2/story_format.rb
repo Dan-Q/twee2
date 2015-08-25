@@ -6,7 +6,7 @@ module Twee2
   class StoryFormat
     # Loads the StoryFormat with the specified name
     def initialize(name)
-      raise(StoryFormatNotFoundException) if !File::exists?(format_file_path = Twee2::buildpath("storyFormats/#{name}/format.js"))
+      raise(StoryFormatNotFoundException) if !File::exists?(format_file_path = Twee2::buildpath("storyFormats/#{name}/format.js")) && !File::exists?(format_file_path = Twee2::buildpath("#{name}/format.js"))
       @name = name
       format_file = File::read(format_file_path)
       format_data = format_file.match(/(["'])source\1 *: *(["']).*?[^\\]\2/)[0]
