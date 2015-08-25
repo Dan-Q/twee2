@@ -1,3 +1,8 @@
+require 'haml'
+require 'coffee_script'
+require 'sass'
+require 'builder'
+
 module Twee2
   class StoryFileNotFoundException < Exception; end
 

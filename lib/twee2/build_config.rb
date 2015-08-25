@@ -1,3 +1,5 @@
+require 'singleton'
+
 module Twee2
   class BuildConfig
     include Singleton

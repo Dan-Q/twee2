@@ -1,3 +1,5 @@
+require 'json'
+
 module Twee2
   class StoryFormatNotFoundException < Exception; end
 

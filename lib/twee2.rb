@@ -1,12 +1,11 @@
 Encoding.default_external = Encoding.default_internal = Encoding::UTF_8
 
 # Prerequisites (managed by bundler)
-%w{rubygems haml singleton
-  twee2/version twee2/story_format twee2/story_file twee2/decompiler twee2/build_config
-  bundler/setup
-  thor json builder filewatcher coffee_script nokogiri open-uri sass}.each do |prerequisite|
-  require prerequisite
-end
+require 'rubygems'
+require 'bundler/setup'
+Dir.glob("#{File.dirname(File.absolute_path(__FILE__))}/twee2/*.rb", &method(:require))
+require 'thor'
+require 'filewatcher'
 
 module Twee2
   # Constants

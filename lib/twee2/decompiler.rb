@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'nokogiri'
+
 module Twee2
   class DecompilationFailedException < Exception; end
 
