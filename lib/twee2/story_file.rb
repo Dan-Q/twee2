@@ -90,7 +90,15 @@ module Twee2
       # Generate XML in Twine 2 format
       @story_data = Builder::XmlMarkup.new
       # TODO: what is tw-storydata's "options" attribute for?
-      @story_data.tag!('tw-storydata', { name: Twee2::build_config.story_name, startnode: @story_start_pid, creator: 'Twee2', 'creator-version' => Twee2::VERSION, ifid: 'TODO', format: '{{STORY_FORMAT}}', options: '' }) do
+      @story_data.tag!('tw-storydata', {
+                                        name: Twee2::build_config.story_name,
+                                   startnode: @story_start_pid,
+                                     creator: 'Twee2',
+                         'creator-version' => Twee2::VERSION,
+                                        ifid: Twee2::build_config.story_ifid,
+                                      format: '{{STORY_FORMAT}}',
+                                     options: ''
+                      }) do
         @story_data.style(story_css, role: 'stylesheet', id: 'twine-user-stylesheet', type: 'text/twine-css')
         @story_data.script(story_js, role: 'script', id: 'twine-user-script', type: 'text/twine-javascript')
         @passages.each do |k,v|

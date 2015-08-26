@@ -12,10 +12,27 @@ module Twee2
   DEFAULT_FORMAT = 'Harlowe'
 
   def self.build(input, output, options = {})
-    # Read and parse format file
-    build_config.story_format = StoryFormat::new(options[:format])
     # Read and parse input file
-    build_config.story_file = StoryFile::new(input)
+    begin
+      build_config.story_file = StoryFile::new(input)
+    rescue StoryFileNotFoundException
+      puts "ERROR: story file '#{input}' not found."
+      exit
+    end
+    # Read and parse format file, unless already set (by a Twee2::build_config.story_format call in the story file, for example)
+    if !build_config.story_format
+      begin
+        build_config.story_format = StoryFormat::new(options[:format])
+      rescue StoryFormatNotFoundException
+        puts "ERROR: story format '#{options[:format]}' not found."
+        exit
+      end
+    end
+    # Warn if IFID not specified
+    if !build_config.story_ifid_specified
+      puts "NOTICE: You haven't specified your IFID. Consider adding to your code -"
+      puts "::StoryIFID[twee2]\nTwee2::build_config.story_ifid = '#{build_config.story_ifid}'"
+    end
     # Produce output file
     File::open(output, 'w') do |out|
       out.print build_config.story_format.compile
