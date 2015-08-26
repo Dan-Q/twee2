@@ -1,14 +1,34 @@
 ---
-title: Twee2
+title: Interactive Fiction for Power Users
 ---
 
-
-#banner.page-header
-  .row
-    .col-sm-12
+.page-header
+  .row.jumbotron
+    .col-sm-8.col-xs-12
       %h1 Twee2
       .lead
-        %em Writing
-        interactive fiction, not
-        %em drawing
-        it
+        Interactive Fiction for Power Users
+      %ul.list-inline
+        %li
+          %a.btn.btn-primary.btn-lg{role: 'button', href: 'install.html'}
+            %span.glyphicon.glyphicon-cloud-download{aria: { hidden: true }}
+            Install Twee2
+        %li
+          %a.btn.btn-default.btn-lg{role: 'button', href: 'tutorial.html'}
+            %span.glyphicon.glyphicon-time{aria: { hidden: true }}
+            2-minute tutorial
+    .col-sm-4.hidden-xs
+      %img.img-responsive{src: '/images/twee2-logo.png', alt: 'Twee2 Logo'}
+
+.row
+  .col-sm-12
+    %h2 What is Twee2
+    %p
+      Twee2 is a system for writing web-based interactive fiction in the
+      %a{href: 'https://en.wikipedia.org/wiki/Choose_Your_Own_Adventure', title: 'Wikipedia article: Choose Your Own Adventure'} "Choose Your Own Adventure"
+      style (but it can do a lot more than that, too). It's built on top of
+      = succeed ',' do
+        %a{href: 'http://twinery.org', title: 'Twine'} Twine
+      but instead of Twine's graphical editing system Twee2 works with your favourite text editor and
+      tools, making it more-suitable for power users, advanced Twine authors, and those with a programming background.
+
