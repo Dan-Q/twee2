@@ -23,4 +23,15 @@ namespace :web do
       system("middleman server")
     end
   end
+
+  desc "Deploy the website to github pages"
+  task :deploy do
+    run_from_directory('.') do
+      system("git subtree push --prefix web/build origin gh-pages")
+    end
+  end
+
+  desc "Build and deploy the website"
+  task :build_dep => [:build, :deploy] do
+  end
 end
