@@ -1,0 +1,119 @@
+---
+title: Start writing Interactive Fiction in two minutes
+---
+
+.row
+  .col-sm-12
+    %h1 2-minute tutorial
+    %p
+      You can write your first piece of interactive fiction in just two minutes, after you've installed
+      Twee2. Just follow the steps below. When you're ready to move on to more-complicated adventures,
+      see the
+      = succeed '.' do
+        %a{href: 'documentation.html'} full documentation
+
+.row
+  .col-xs-8
+    %h2 1. Install Twee2
+    %p
+      If you haven't
+      %a{href: 'install.html'} installed Twee2
+      yet, do that first.
+  .col-xs-4
+    %a.btn.btn-primary.btn-lg{role: 'button', href: 'install.html'}
+      %span.glyphicon.glyphicon-cloud-download{aria: { hidden: true }}
+      Install Twee2
+
+.row
+  .col-sm-6
+    %h2 2. Open your text editor
+    %p
+      You can write code in any text editor: your computer will almost-certainly already have one installed.
+      On Windows, you can use Notepad. On MacOS, TextEdit is available (be sure to select "Make Plain Text"
+      from the Format menu). On Linux, you might use GEdit, Kate, Emacs, Vim, Pico, or something else entirely.
+    %p
+      If you have a favourite text editor, you can use that: personally, I like
+      = succeed ',' do
+        %a{href: 'https://www.sublimetext.com'} Sublime Text
+      which is available for a variety of platforms and supports
+      = succeed '.' do
+        %a{href: 'https://github.com/monospaced/sublime-twee'} source code highlighting for Twee2
+  .col-sm-6{style: 'margin-bottom: 2em'}
+    %img.center-block.img-responsive{src: 'images/notepad.png', alt: 'Notepad for Windows'}
+
+.row
+  .col-sm-6
+    %h2 3. Write some code
+    %p
+      To begin with, copy-paste the code
+      %span.visible-xs-inline below
+      %span.hidden-xs on the right
+      into your text editor (or
+      %a{href: 'escape-from-earth.tw2'} download it here
+      \- you might need to right-click and select "Save as...").
+      Later, you can experiment with changing this file.
+    %p
+      Notice that the file is broken up into several
+      = succeed ',' do
+        %em passages
+      each of which is preceeded by a title - the titles each begin with two colons (::).
+      Two of the passages in this code are special. The
+      %code ::StoryTitle
+      passage contains the name of our story and by convention it appears at or near the top
+      of the file. The
+      %code ::Start
+      passage is
+      %em usually
+      the one that the player reads first, when they play your game.
+    %p
+      Save your file as
+      = succeed '.' do
+        %code escape-from-earth.tw2
+      You can use any file extension you like, but conventionally Twee2 files have a
+      %code .tw2
+      suffix to differentiate them from other types of files. If you're using Notepad for
+      Windows, you might need to select "All files" from the "Save as Type" drop-down while
+      saving, or else Windows will put
+      %code .txt
+      on the end of the filename.
+    %p
+      To compile your code, open a command prompt or terminal in the same directory as your code file, and run:
+    %p
+      %pre
+        twee2 build escape-from-earth.tw2 escape-from-earth.html
+    %p
+      Twee2 will compile a HTML output file based on the code. Open this HTML file in your preferred web browser
+      e.g. by double-clicking on it, and you can play your new story. Or
+      %a{href: 'escape-from-earth.html'} play it online
+      to discover what you might expect to see.
+    %p
+      This short story is a very simple adventure. It might be easiest to describe in terms of a flowchart:
+    %p
+      %img{src: 'images/escape-from-earth.png', class: 'img-responsive', alt: 'Flowchart showing the seven possible endings to Escape From Earth.'}
+    %p
+      In each passage, the player may click a link to be taken to a different passage. Links appear in the code
+      as some text, an arrow
+      = surround '(', '),' do
+        %code ->
+      and the name of the passage that the player will be taken to upon clicking it. So the code
+      %code [[Read the book->Read Book]]
+      would show the text "Read the book" to the player, and if they click it they'll be taken to the passage that
+      begins with
+      = succeed '.' do
+        %code ::Read Book
+      You can use Markdown formatting to style your text. Note the asterisks around the words "THE END" in
+      = succeed ':' do
+        %em Escape from Earth
+      these make that text appear in bold.
+
+  .col-sm-6
+    %pre= File::read 'source/escape-from-earth.tw2'
+
+.row
+  .col-sm-12
+    %h2 4. Start playing!
+    %p
+      You now know enough to start making simple 'choose your own adventure'-type stories with Twee2.
+      For more-detailed information, see
+      = succeed '.' do
+        %a{href: 'documentation.html'} the full documentation

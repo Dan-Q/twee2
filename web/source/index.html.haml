@@ -7,8 +7,9 @@ title: Interactive Fiction for Power Users
     .col-sm-8.col-xs-12
       %h1 Twee2
       .lead
-        Interactive Fiction for Power Users
-      %ul.list-inline
+        Interactive Fiction for Power Users, powered by
+        %a{href: 'http://twinery.org'} Twine
+      %ul.list-inline{style: 'line-height: 4em;'}
         %li
           %a.btn.btn-primary.btn-lg{role: 'button', href: 'install.html'}
             %span.glyphicon.glyphicon-cloud-download{aria: { hidden: true }}
@@ -17,12 +18,20 @@ title: Interactive Fiction for Power Users
           %a.btn.btn-default.btn-lg{role: 'button', href: 'tutorial.html'}
             %span.glyphicon.glyphicon-time{aria: { hidden: true }}
             2-minute tutorial
+        %li
+          %a.btn.btn-default.btn-lg{role: 'button', href: 'documentation.html'}
+            %span.glyphicon.glyphicon-book{aria: { hidden: true }}
+            Documentation
+        %li
+          %a.btn.btn-default.btn-lg{role: 'button', href: 'https://github.com/avapoet/twee2'}
+            %span.glyphicon.glyphicon-link{aria: { hidden: true }}
+            Source
     .col-sm-4.hidden-xs
-      %img.img-responsive{src: '/images/twee2-logo.png', alt: 'Twee2 Logo'}
+      %img.img-responsive{src: 'images/twee2-logo.png', alt: 'Twee2 Logo'}
 
 .row
   .col-sm-12
-    %h2 What is Twee2
+    %h2 What is Twee2?
     %p
       Twee2 is a system for writing web-based interactive fiction in the
       %a{href: 'https://en.wikipedia.org/wiki/Choose_Your_Own_Adventure', title: 'Wikipedia article: Choose Your Own Adventure'} "Choose Your Own Adventure"
@@ -32,3 +41,144 @@ title: Interactive Fiction for Power Users
       but instead of Twine's graphical editing system Twee2 works with your favourite text editor and
       tools, making it more-suitable for power users, advanced Twine authors, and those with a programming background.
 
+    %h2 What does it look like?
+
+.row
+  .col-md-6
+    .panel.panel-primary
+      .panel-heading Code
+      .panel-body
+        %pre
+          :preserve
+            ::StoryTitle
+            Choosing Your Own CYOA
+
+            ::Start
+            ### Choose Your Own CYOA
+            #### A demonstrative adventure
+
+            You sit at your computer and contemplate how you're going to
+            write your next HTML adventure game. You wrote your last one
+            [using Twine->Twine], but you've heard good things about
+            [Twee2], as well.
+
+            ::Twine
+            You decide to stick with what you know and use Twine. That's
+            fine: it's a great system and it's easy to use, especially
+            for beginners. Maybe next time you'll be ready to try Twee2!
+
+            **THE END**
+
+            [Play again?->Start]
+
+            ::Twee2
+            You decide to write your latest adventure using Twee2. You
+            find that you're able to use all of the things you're
+            familiar with from Twine, but you also get to use your
+            favourite text editor, break up your work into multiple
+            files, mark up content using modern languages, and preview
+            in a separate browser while you work.
+
+            **THE END**
+
+            [Play again?->Start]
+
+  .col-md-6
+    .panel.panel-primary
+      .panel-heading Output
+      .panel-body
+        .embed-responsive.embed-responsive-4by3
+          %iframe.embed-responsive-item{src: 'eg1.html'}
+
+.row
+  .col-sm-12
+    %h2 How does it compare to Twine?
+    %p
+      Twee2 and Twine 2 produce
+      %em the same
+      output. They differ only in how you, the author, work to produce that output:
+
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th.warning
+            Feature
+          %th
+            Twine 2
+          %th.success
+            Twee2
+      %tbody
+        %tr
+          %th.warning.text-right Editor
+          %td Web-based "drag-and-drop" editor
+          %td.success Your favourite text editor
+        %tr
+          %th.warning.text-right Story formats supported
+          %td Harlowe, Paperthin, Snowman, SugarCube, and any custom ones you add
+          %td.success Harlowe, Paperthin, Snowman, SugarCube, and any custom ones you add
+        %tr
+          %th.warning.text-right Files saved to...
+          %td Twine 2's own store (can be exported elsewhere)
+          %td.success Wherever you like
+        %tr
+          %th.warning.text-right Inputs
+          %td Twine 2 files
+          %td.success Twee2 files, Twee files, Twine 2 files (except on Windows)
+        %tr
+          %th.warning.text-right Outputs
+          %td Twine 2 web pages
+          %td.success Twine 2 web pages
+        %tr
+          %th.warning.text-right Supported formatting languages
+          %td Markdown
+          %td.success Markdown, HAML
+        %tr
+          %th.warning.text-right Supported additional languages
+          %td CSS, Javascript
+          %td.success CSS, Javascript, SASS/SCSS, Coffeescript
+        %tr
+          %th.warning.text-right Simultaneous working
+          %td No
+          %td.success Yes, using includes and/or source control
+        %tr
+          %th.warning.text-right Source control support
+          %td No/barely
+          %td.success Yes, use your favourite source control
+        %tr
+          %th.warning.text-right Can split work into multiple files
+          %td No
+          %td.success Yes
+        %tr
+          %th.warning.text-right Regeneration-on-save
+          %td No
+          %td.success Yes, with 'watch' command
+
+    %ul
+      %li
+        Twine is better for people new to writing interactive fiction and to programming
+        in general, or those who prefer a visual interface.
+      %li
+        Twee2 is better for people experienced in writing interactive fiction and/or other
+        kinds of programming, or who prefer a text interface.
+
+.row
+  .col-md-8.col-md-offset-2
+    .well
+      %h3 Get started!
+      %ul.list-inline{style: 'line-height: 4em;'}
+        %li
+          %a.btn.btn-primary.btn-lg{role: 'button', href: 'install.html'}
+            %span.glyphicon.glyphicon-cloud-download{aria: { hidden: true }}
+            Install Twee2
+        %li
+          %a.btn.btn-default.btn-lg{role: 'button', href: 'tutorial.html'}
+            %span.glyphicon.glyphicon-time{aria: { hidden: true }}
+            2-minute tutorial
+        %li
+          %a.btn.btn-default.btn-lg{role: 'button', href: 'documentation.html'}
+            %span.glyphicon.glyphicon-book{aria: { hidden: true }}
+            Documentation
+        %li
+          %a.btn.btn-default.btn-lg{role: 'button', href: 'https://github.com/avapoet/twee2'}
+            %span.glyphicon.glyphicon-link{aria: { hidden: true }}
+            Source

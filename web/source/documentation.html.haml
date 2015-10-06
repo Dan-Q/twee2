@@ -1,0 +1,115 @@
+---
+title: Full documentation
+---
+
+.row
+  .col-sm-3.col-sm-push-9
+    %h2 Index
+    %ul
+      %li
+        %a{href: '#relationship-to-twine'} Relationship to Twine
+      %li
+        %a{href: '#writing-code'} Writing and compiling code
+      %li
+        %a{href: '#story-formats'} Understanding story formats
+      %li
+        %a{href: '#twee2-syntax'} Twee2 syntax
+      %li
+        %a{href: '#includes'} Splitting your code into multiple files
+      %li
+        %a{href: '#build-config'} Setting build configuration options
+
+  .col-sm-9.col-sm-pull-3
+    %h1 Full documentation
+
+    %h2#relationship-to-twine Relationship to Twine
+    %p
+      Twee2 is built on top of
+      = succeed ',' do
+        %a{href: 'http://twinery.org/'} Twine 2
+      minus the graphical user interface. As a result, virtually all of the
+      %a{href: 'http://twinery.org/wiki/twine2:guide'} documentation about Twine 2
+      (and specifically the documentation about the
+      = succeed ')' do
+        %a{href: 'http://twinery.org/wiki/twine2:how_to_choose_a_story_format'} different story formats
+      is relevant to Twee2, too.
+      Because Twee2 is inspired by Twee, its documentation is also a valuable resource: however note that
+      you can't use Twee 'macros' in Twee2.
+    
+    %h2#writing-code Writing and compiling code
+    %p
+      Write Twee2 code using your favourite text editor. Syntax highlighting is available via
+      %a{href: 'https://github.com/monospaced/sublime-twee'} this Sublime Text plugin
+      for Twee. By convention, Twee2 source files have the
+      %code .tw2
+      extension.
+    %p
+      Compile Twee2 files using the
+      %code twee2
+      command-line tool. There are two important modes of operation:
+    %ul
+      %li
+        %code twee2 build input.tw2 output.html
+        produces output.html based on the code in input.tw2
+      %li
+        %code twee2 watch input.tw2 output.html
+        does the same thing, but
+        %em watches
+        input.tw2 for changes, automatically recompiling whenever it is updated (note that it's not
+        smart enough to understand when
+        %a{href: '#includes'} 'included'
+        files have been changed, though).
+    %p
+      Because Twee2 source files are just plain text files, they're well-suited to use with
+      source control systems: you could, for example, use
+      %a{href: 'https://github.com/'} Github
+      to share your code or to collaborate with other authors, even working on the same file.
+
+    %h2#story-formats Understanding story formats
+    %p
+      Twee2 comes with built-in support for all of the same story formats that Twine 2 does:
+    %ul
+      %li
+        %a{href: 'http://twine2.neocities.org/'} Harlowe
+        \- the default format, which includes a simplified scripting format
+      %li
+        %a{href: 'https://bitbucket.org/klembot/snowman-2'} Snowman
+        \- a minimal format that uses Underscore.js templates and jQuery to provide programmers with a powerful toolset
+      %li
+        %a{href: 'http://www.motoslave.net/sugarcube/'} SugarCube
+        \- a TiddlyWiki-powered format that comes with support for multiple save 'slots' and a Twine 1/Twee 'macro'-like scripting syntax
+      %li
+        Paperthin - used when you select "View Proofing Copy" in Twine 2, this minimal skeleton isn't really an output format as it is a proofing tool
+    %p
+      If you've having difficulty choosing between them, there's
+      %a{href: 'http://twinery.org/wiki/twine2:how_to_choose_a_story_format'} a summary of the differences
+      in the Twine 2 documentation.
+    %p
+      To specify which format to use during compilation, use the optional
+      %code --format
+      parameter. E.g. you might type
+      = succeed '.' do
+        %code twee2 build input.tw2 output.html --format=Snowman
+      You can get a list of the formats that Twee2 natively understands by running
+      = succeed '.' do
+        %code twee2 formats
+    %p
+      It's possible to use any story format, e.g. if you've downloaded or written your own, by specifying the path
+      to the story format's directory (the one containing the format.js file) in your
+      %code --format
+      parameter. For example, you might run
+      = succeed '.' do
+        %code twee2 build input.tw2 output.html --format=./MyFormat
+    %p
+      Rather than setting the format on the command-line, it's possible to specify it within your source code
+      itself, using
+      %a{href: '#build-config'} build configuration
+      options.
+
+    %h2#twee2-syntax Twee2 syntax
+    %p
+      Twee2 uses a syntax that's heavily inspired-by but not 100% compatible with Twee.
+
+    %h2#includes Splitting your code into multiple files
+
+    %h2#build-config Setting build configuration options

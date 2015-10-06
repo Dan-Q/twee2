@@ -10,17 +10,25 @@
     = stylesheet_link_tag 'all'
     = javascript_include_tag 'all'
   %body
-    .navbar.navbar-default.navbar-fixed-top
+    .navbar.navbar-default.navbar-static-top
       .container
         .navbar-header
-          %a.navbar-brand{href: '/'} Twee2
+          %a.navbar-brand{href: './'} Twee2
           %button.navbar-toggle{type: 'button', data: { toggle: 'collapse', target: '#navbar-main'} }
             - 3.times do
               %span.icon-bar
         #navbar-main.navbar-collapse.collapse
           %ul.nav.navbar-nav
             %li
-              %a{href: '/'} Home
+              %a{href: 'index.html'} Home
+            %li
+              %a{href: 'install.html'} Install
+            %li
+              %a{href: 'tutorial.html'} 2-minute tutorial
+            %li
+              %a{href: 'documentation.html'} Documentation
+            %li
+              %a{href: 'https://github.com/avapoet/twee2'} Source
 
     .container
       = yield
@@ -37,7 +45,9 @@
               %a{href: 'https://danq.me/'} Dan Q
               2015—
               |
-              Twee2 is distributed under the
+              Twee2 is distributed
+              %a{href: 'https://github.com/avapoet/twee2'} via Github
+              under the
               %a{href: 'https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html'} GNU General Public License version 2
               |
               This website is licensed under the

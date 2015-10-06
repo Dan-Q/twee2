@@ -1,0 +1,81 @@
+---
+title: Install
+---
+
+.row
+  .col-sm-12
+    %h1 Installing Twee2
+    %h2 Prerequisites
+    %p
+      Twee2 requires
+      %a{href: 'https://ruby-lang.org/'} Ruby
+      version 2.0 or higher. You can check whether Ruby is installed and what version it is
+      by opening up a command prompt or terminal and running:
+    %pre
+      ruby -v
+    %p
+      If you don't have Ruby installed, there are several ways to easily install it. Here are some quick ways:
+
+.row
+  .col-sm-4
+    .well
+      %h3 Windows
+      %p
+        %a{href: 'http://rubyinstaller.org/downloads/'} Download RubyInstaller
+      %p.small
+        Note that the 'decompile' feature, which turns Twine 2 story files into Twee2 source code, is not supported on Windows.
+
+  .col-sm-4
+    .well
+      %h3 MacOS
+      %p
+        MacOS comes with Ruby, but it's usually out-of-date.
+        %a{href: 'https://www.interworks.com/blog/ckaukis/2013/03/05/installing-ruby-200-rvm-and-homebrew-mac-os-x-108-mountain-lion'}
+          Install a modern version
+        using RVM.
+
+  .col-sm-4
+    .well
+      %h3 Linux
+      %p
+        Many Linux distributions have packages for Ruby, but it's often out-of-date.
+        Install
+        %acronym{title: 'Ruby Version Manager'} RVM
+        and use it to get Ruby 2.1.6 by running:
+      %code.small
+        :preserve
+          gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+          \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.1.6
+          rvm use 2.1.6 --default
+
+.row
+  .col-sm-12
+    %h2 Installing Twee2
+    %p
+      To install Twee2, open a command prompt or terminal and type:
+    %pre
+      gem install twee2
+    %p
+      You can check that it's installed correctly by running:
+    %pre
+      twee2
+    %p
+      Now you're ready to dive into the
+      %a{href: 'tutorial.html'} two-minute tutorial
+      or the
+      = succeed '.' do
+        %a{href: 'documentation.html'} full documentation
+
+.row
+  .col-sm-6
+    %h2 Uninstalling Twee2
+    %p
+      If you ever want to uninstall Twee2, simply run:
+    %pre
+      gem uninstall twee2
+
+  .col-sm-6
+    %h2 Source code
+    %p
+      Twee2 is open-source, which means you can read and change its code for yourself.
+      %a{href: 'https://github.com/avapoet/twee2'} Get the code on GitHub.

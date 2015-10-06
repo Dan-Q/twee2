@@ -17,10 +17,10 @@ namespace :web do
     end
   end
 
-  desc "Preview the website at http://localhost:4567"
+  desc "Preview the website at http://0.0.0.0:4567"
   task :preview do
     run_from_directory('web') do
-      system("middleman server")
+      system("middleman server --bind-address=0.0.0.0")
     end
   end
 

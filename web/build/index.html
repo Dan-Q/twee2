@@ -39,7 +39,7 @@
             <div class='lead'>
               Interactive Fiction for Power Users
             </div>
-            <ul class='list-inline'>
+            <ul class='list-inline' style='line-height: 4em;'>
               <li>
                 <a class='btn btn-primary btn-lg' href='install.html' role='button'>
                   <span aria-hidden class='glyphicon glyphicon-cloud-download'></span>
@@ -61,7 +61,7 @@
       </div>
       <div class='row'>
         <div class='col-sm-12'>
-          <h2>What is Twee2</h2>
+          <h2>What is Twee2?</h2>
           <p>
             Twee2 is a system for writing web-based interactive fiction in the
             <a href='https://en.wikipedia.org/wiki/Choose_Your_Own_Adventure' title='Wikipedia article: Choose Your Own Adventure'>"Choose Your Own Adventure"</a>
@@ -70,6 +70,117 @@
             but instead of Twine's graphical editing system Twee2 works with your favourite text editor and
             tools, making it more-suitable for power users, advanced Twine authors, and those with a programming background.
           </p>
+          <h2>What does it look like?</h2>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-6'>
+          <div class='panel panel-primary'>
+            <div class='panel-heading'>Code</div>
+            <div class='panel-body'>
+              <pre>::StoryTitle&#x000A;Choosing Your Own CYOA&#x000A;&#x000A;::Start&#x000A;### Choose Your Own CYOA&#x000A;#### A demonstrative adventure&#x000A;&#x000A;You sit at your computer and contemplate how you're going to&#x000A;write your next HTML adventure game. You wrote your last one&#x000A;[using Twine->Twine], but you've heard good things about&#x000A;[Twee2], as well.&#x000A;&#x000A;::Twine&#x000A;You decide to stick with what you know and use Twine. That's&#x000A;fine: it's a great system and it's easy to use, especially&#x000A;for beginners. Maybe next time you'll be ready to try Twee2!&#x000A;&#x000A;**THE END**&#x000A;&#x000A;[Play again?->Start]&#x000A;&#x000A;::Twee2&#x000A;You decide to write your latest adventure using Twee2. You&#x000A;find that you're able to use all of the things you're&#x000A;familiar with from Twine, but you also get to use your&#x000A;favourite text editor, break up your work into multiple&#x000A;files, mark up content using modern languages, and preview&#x000A;in a separate browser while you work.&#x000A;&#x000A;**THE END**&#x000A;&#x000A;[Play again?->Start]&#x000A;</pre>
+            </div>
+          </div>
+        </div>
+        <div class='col-md-6'>
+          <div class='panel panel-primary'>
+            <div class='panel-heading'>Output</div>
+            <div class='panel-body'>
+              <div class='embed-responsive embed-responsive-4by3'>
+                <iframe class='embed-responsive-item' src='eg1.html'></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-12'>
+          <h2>How does it compare to Twine?</h2>
+          <p>
+            Twee2 and Twine 2 produce
+            <em>the same</em>
+            output. They differ only in how you, the author, work to produce that output:
+          </p>
+          <table class='table table-bordered'>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>
+                  Twine 2
+                </th>
+                <th>
+                  Twee2
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Editor</th>
+                <td>Web-based "drag-and-drop" editor</td>
+                <td>Your favourite text editor</td>
+              </tr>
+              <tr>
+                <th>Story formats supported</th>
+                <td>Harlowe, Paperthin, Snowman, SugarCube, and any custom ones you add</td>
+                <td>Harlowe, Paperthin, Snowman, SugarCube, and any custom ones you add</td>
+              </tr>
+              <tr>
+                <th>Files saved to...</th>
+                <td>Twine 2's own store (can be exported elsewhere)</td>
+                <td>Wherever you like</td>
+              </tr>
+              <tr>
+                <th>Inputs</th>
+                <td>Twine 2 files</td>
+                <td>Twee2 files, Twee files, Twine 2 files (except on Windows)</td>
+              </tr>
+              <tr>
+                <th>Outputs</th>
+                <td>Twine 2 web pages</td>
+                <td>Twine 2 web pages</td>
+              </tr>
+              <tr>
+                <th>Supported formatting languages</th>
+                <td>Markdown</td>
+                <td>Markdown, HAML</td>
+              </tr>
+              <tr>
+                <th>Supported additional languages</th>
+                <td>CSS, Javascript</td>
+                <td>CSS, Javascript, SASS/SCSS, Coffeescript</td>
+              </tr>
+              <tr>
+                <th>Simultaneous working</th>
+                <td>No</td>
+                <td>Yes, using includes and/or source control</td>
+              </tr>
+              <tr>
+                <th>Source control support</th>
+                <td>No/barely</td>
+                <td>Yes, use your favourite source control</td>
+              </tr>
+              <tr>
+                <th>Can split work into multiple files</th>
+                <td>No</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <th>Regeneration-on-save</th>
+                <td>No</td>
+                <td>Yes, with 'watch' command</td>
+              </tr>
+            </tbody>
+          </table>
+          <ul>
+            <li>
+              Twine is better for people new to writing interactive fiction and to programming
+              in general, or those who prefer a visual interface.
+            </li>
+            <li>
+              Twee2 is better for people experienced in writing interactive fiction and/or other
+              kinds of programming, or who prefer a text interface.
+            </li>
+          </ul>
         </div>
       </div>
       <footer>
