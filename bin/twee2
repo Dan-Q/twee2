@@ -29,6 +29,11 @@ class Twee2CLI < Thor
     Twee2::decompile(url, output)
   end
 
+  desc 'version', "reports which version you're using and checks what the highest available version is"
+  def version
+    Twee2::version_check
+  end
+
   desc 'help', 'shows usage instructions'
   def help
     Twee2::help

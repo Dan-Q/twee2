@@ -18,5 +18,9 @@ Usage:
     a Twee2 source file.
     NOT AVAILABLE ON MICROSOFT WINDOWS.
 
+  twee2 version
+    Reports what version of Twee2 you're using, and checks what the
+    latest-available version is.
+
   twee2 help
     Displays this message.

@@ -55,6 +55,15 @@ module Twee2
     puts StoryFormat.known_names.join("\n")
   end
 
+  def self.version_check
+    `gem list -r -q twee2` =~ /\((.*)\)/
+    puts "   Your version: #{Twee2::VERSION}"
+    puts " Latest version: #{$1}"
+    if Twee2::VERSION.to_s != $1
+      puts "To upgrade, run: gem install twee2"
+    end
+  end
+
   unless Gem.win_platform?
     # Reverse-engineers a Twee2/Twine 2 output HTML file into a Twee2 source file
     def self.decompile(url, output)
