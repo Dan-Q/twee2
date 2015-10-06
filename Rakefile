@@ -12,6 +12,7 @@ namespace :web do
   
   desc 'Build the website from source'
   task :build do
+    raise 'Middleman not found. Try "gem install middleman".' if `which middleman` == ''
     run_from_directory('web') do
       system("middleman build --clean")
     end
@@ -19,6 +20,7 @@ namespace :web do
 
   desc "Preview the website at http://0.0.0.0:4567"
   task :preview do
+    raise 'Middleman not found. Try "gem install middleman".' if `which middleman` == ''
     run_from_directory('web') do
       system("middleman server --bind-address=0.0.0.0")
     end
