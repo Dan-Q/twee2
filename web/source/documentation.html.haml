@@ -14,6 +14,13 @@ title: Full documentation
         %a{href: '#story-formats'} Understanding story formats
       %li
         %a{href: '#twee2-syntax'} Twee2 syntax
+        %ul
+          %li
+            %a{href: '#twee2-syntax-passages'} Passages
+          %li
+            %a{href: '#twee2-syntax-content'} Content
+          %li
+            %a{href: '#twee2-syntax-special-passages'} Special passages
       %li
         %a{href: '#includes'} Splitting your code into multiple files
       %li
@@ -108,8 +115,80 @@ title: Full documentation
 
     %h2#twee2-syntax Twee2 syntax
     %p
-      Twee2 uses a syntax that's heavily inspired-by but not 100% compatible with Twee.
+      Twee2 uses a syntax that's heavily inspired-by but not 100% compatible with Twee:
+
+    %h3#twee2-syntax-passages Passages
+    %p
+      Each block of text in Twee2 exists in a
+      = succeed '.' do
+        %em passage
+      Each passage begins with a title, which is prefixed by two colons:
+    %p
+      %code ::My Passage Name
+    %p
+      Passage titles may only contain letters, numbers, basic punctuation, and spaces. Some authors prefer to avoid
+      spaces in their passage titles. Passage titles are not case-sensitive: you don't have to use the same case when
+      referring to a passage every time. Passages titles
+      %em should
+      be unique within a story: if they're not, only the last passage with a given title will be included in the story.
+    %p
+      Passage titles may optionally be suffixed by one or both of:
+    %ul
+      %li
+        Any number of
+        = succeed ',' do
+          %em tags
+        separated by spaced, inside a pair of square brackets. E.g:
+        %br/
+        %code ::My Passage Name [tagone tagtwo]
+        %br/
+        Tags can be used by code in your story (e.g. to send the player to a randomly-selected passage from a subset).
+        = succeed ',' do
+          %a{href: '#twee2-syntax-special-passages'} Some tags have special meanings
+        as described below.
+      %li
+        A pair of coordinates, separated by a comma and enclosed within angle brackets. E.g.:
+        %br/
+        %code ::My Passage Name <123,456>
+        %br/
+        Coordinates have no meaning to Twee2, but they can be used to enhance compatability with Twine 2: Twine 2 uses
+        these coordinates to decide where to show the passages in its WYSIWYG editor.
+    %p
+      If you include both tags and coordinates after a passage, the tags must come before the coordinates, e.g.:
+    %p
+      %code ::My Passage Name [tagone tagtwo] <123,456>
+    %p
+      Some passages and tags
+      = succeed ',' do
+        %a{href: '#twee2-syntax-special-passages'} have special meanings
+      as described below
+
+    %h3#twee2-syntax-content Content
+    %p
+      Each passage may contain any amount of content, most of which will be stuff that the player sees. Many
+      story formats understand
+      %em Markdown
+      formatting in passages, which makes it possible to easily add formatting to your passages. Links to different
+      passages are supported in any of the following syntaxes (where 'Dungeon' is the name of the passage they'll be
+      transported if they click the link, and 'click here', where present, is the text that they'll see to click on):
+    %ul
+      %li
+        %code [Dungeon]
+      %li
+        %code [click here->Dungeon]
+      %li
+        %code [Dungeon<-click here]
+      %li
+        %code [click here|Dungeon]
+
+    %h2#twee2-syntax-special-passages Special passages
+    %p
+      TODO
 
     %h2#includes Splitting your code into multiple files
+    %p
+      TODO
 
     %h2#build-config Setting build configuration options
+    %p
+      TODO
