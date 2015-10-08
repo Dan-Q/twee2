@@ -25,6 +25,8 @@ title: Full documentation
         %a{href: '#includes'} Splitting your code into multiple files
       %li
         %a{href: '#build-config'} Setting build configuration options
+      %li
+        %a{href: '#decompiler'} Decompiling Twine 2 stories
 
   .col-sm-9.col-sm-pull-3
     %h1 Full documentation
@@ -183,12 +185,227 @@ title: Full documentation
 
     %h2#twee2-syntax-special-passages Special passages
     %p
-      TODO
+      Some passage names and tags have special meanings. These are:
+
+    %h3 ::Start
+    %p
+      The
+      %code ::Start
+      passage will, by default, be used as the initial passage that your player sees when they start reading.
+      You can override this using
+      = succeed ',' do
+        %a{href: '#build-config'} build configuration options
+      but it's probably easier just to follow this convention.
+
+    %h3 ::StorySubtitle, ::StoryAuthor, ::StoryMenu, and ::StorySettings
+    %p
+      These names were used for special passages in Twee 1. They're not used by Twee2, but to maintain compatability
+      with Twee 1 they're ignored and you should avoid using them unless you're writing a story that needs to be
+      capable of being compiled by both Twee 1 and Twee2.
+
+    %h3 ::StoryIncludes
+    %p
+      Any
+      %code ::StoryIncludes
+      passages (you can have as many as you like, but you probably should avoid having more than one in any file in
+      order to avoid confusion) are treated as lists of secondary Twee2 files to 'include' into your story. This is
+      described in more detail below, under
+      = succeed '.' do
+        %a{href: '#includes'} splitting your code into multiple files
+
+    %h3 [stylesheet]
+    %p
+      Any passages with the 'stylesheet' tag will not be included in your story, but their contents will be injected
+      into the story's stylesheet. For example, you could write:
+    %p
+      %pre
+        :preserve
+          ::MyCoolStylesheet [stylesheet]
+
+          body {
+            background: #eee;
+          }
+
+          tw-passage tw-link {
+            color: red;
+          }
+    %p
+      It's also possible to use
+      %a{href: 'http://sass-lang.com/'} SASS
+      to enhance your stylesheet. Simply add the tag 'sass' or 'scss' to specify the dialect of SASS that you want
+      to use, e.g.:
+      %pre
+        :preserve
+          ::MyCoolStylesheet [scss stylesheet]
+
+          body {
+            background: #eee;
+          }
+
+          tw-passage {
+            tw-link {
+              color: red;
+            }
+          }
+
+    %h3 [script]
+    %p
+      Any passages with the 'script' tag will not be included in your story, but their contents will be injected
+      into the resulting web page as Javascript. For example, you could write:
+    %p
+      %pre
+        :preserve
+          ::SomeAwesomeCode [script]
+
+          alert('This message will appear when the adventure starts!');
+    %p
+      It's also possible to use
+      %a{href: 'http://coffeescript.org/'} Coffeescript
+      to make your Javascript development more-beautiful. Simply add the tag 'coffee' to your script block:
+      %pre
+        :preserve
+          ::SomeAwesomeCode [coffee script]
+
+          alert 'This message will appear when the adventure starts!'
+
+    %h3 [haml]
+    %p
+      Put the 'haml' tag into your regular passages in order to allow you to write
+      %a{href: 'http://haml.info/'} HAML
+      code into your passages. HAML is a sophisticated templating language for producing HTML output, and
+      for some it might be preferable to writing plain old Markdown. This includes the ability to inject
+      Javascript/CoffeeScript into particular passages. For example, you could write:
+    %p
+      %pre
+        :preserve
+          ::NicksBar [haml]
+          %p
+            Nick's Bar is exactly the kind of nightspot that helps you remember why you quit drinking.
+            A depressed-looking barman pours another beer for an equally depressed-looking drunk, while
+            over in the corner a street thug plays with a knife as he eyes you up. The floor is sticky
+            and the air reeks of stale alcohol.
+          %p
+            %strong What would you like to do?
+          %ul
+            %li [Nick<-Talk to the bartender]
+            %li [BarToilet<-Go to the bathroom]
+            %li [BarSit<-Sit in a booth]
+
+          :coffeescript
+            $ ->
+              alert "This message will appear when you reach Nick's Bar!"
+
+    %h3 [twee2]
+    %p
+      Passages marked with the 'twee2' tag are not included in your story. However, any Ruby code in them
+      will be executed when the passage is processed by the builder. This can be used to
+      %a{href: '#build-config'} set build configuration options
+      as described below.
 
     %h2#includes Splitting your code into multiple files
     %p
-      TODO
+      A major benefit of Twee2 over Twine 2 is that it's possible to break apart your story into multiple
+      files, which can be used to structure your work, to facilitate teamworking with or without source
+      control, and to make 'reusable' components such as stylesheets and scripts which can then be injected
+      into later stories. There are two ways to do this:
+
+    %h3 Using ::StoryIncludes
+    %p
+      Insert a
+      %code ::StoryIncludes
+      passage into your file and list within it the names of the files to include. Each will be appended
+      to the end of your story before compilation. For example, the following game skeleton includes the
+      contents of four other files - the main file contains only the
+      %code ::Start
+      passage:
+    %p
+      %pre
+        :preserve
+          ::Start
+          **Journey To The Centre Of The Earth**
+
+          by Dan Q
+
+          [Play]
+
+          ::StoryIncludes
+          first_section.tw2
+          second_section.tw2
+          stylesheet.tw2
+          javascripts.tw2
+
+    %h3 Using ::@include directives
+    %p
+      You can put an
+      %code ::@include
+      directive anywhere in your code to insert the contents of another file at that point.
+      %code ::@include
+      respects your current indentation level (e.g. when using HAML), so it's safe to use at any indentation
+      'depth'. For example, the following passages each include a separate file that contains a description
+      of the house in the distance: that description is shared between the two passages, and updating the
+      file updates the description in both.
+    %p
+      %pre
+        :preserve
+          ::Greenhouse [haml]
+          %p
+            Light shines brightly through the tall glass walls of the ornate wrought-iron greenhouse, and
+            the plants are verdant and lively. The [Garden<-door] stands open and a cool breeze blows in.
+          %p
+            ::@include description-of-house.tw2
+
+          ::Garden [haml]
+          %p
+            The garden winds around decorative trees betwen the [greenhouse] and the [Porch<-mansion].
+          %p
+            ::@include description-of-house.tw2
+
+    %p
+      Note that neither method of including code works recursively (i.e. you can't include a file that in
+      turn includes another file), but this may be fixed in a future version.
 
     %h2#build-config Setting build configuration options
     %p
-      TODO
+      Creating a passage with the 'twee2' tag can be used to run arbritrary Ruby code or to pass additional
+      options to the Twee2 compiler. This expands the potential capability of Twee2 almost-limitlessly, but for now
+      the only supported options are:
+    %ul
+      %li
+        %strong
+          %code
+            = surround "Twee2::build_config.story_ifid = '", "'" do
+              %em [your IFID]
+        \- used to set the
+        %a{href: 'http://www.ifwiki.org/index.php/IFID'} IFID of your story, to facilitate catologuing. If you
+        don't include this directive, the compiler will suggest a random one to you every time you run it and
+        explain how to add it: if you're going to publish your story publicly, you should add the line it
+        suggests before you do so.
+      %li
+        %strong
+          %code
+            = surround "Twee2::build_config.story_format = '", "'" do
+              %em [a story format]
+        \- an alternative way of specifying the story format used by your story, rather than using the --format
+        switch to the compiler. The syntax of format names and means of specifying externally-stored formats is
+        identical to
+        = succeed '.' do
+          %a{href: '#story-formats'} using the --format switch
+    %p
+      For example:
+    %p
+      %pre
+        :preserve
+          ::Configuration [twee2]
+          Twee2::build_config.story_ifid = '41AB7776-D198-40F5-BD54-0493D49DA58C'
+          Twee2::build_config.story_format = 'Snowman'
+
+    %h2#decompiler Decompiling Twine 2 stories
+    %p
+      It's possible to convert existing (compiled) Twee2/Twine 2 story files, in HTML format, back into
+      Twee2 source files for further editing. This can be used to convert your Twine 2 projects into Twee2
+      files or to easily examine the contents of somebody else's story. This feature does not work on Microsoft
+      Windows. To use it, run:
+    %p
+      %code twee2 decompile input.html output.tw2
+    %p
+      The input HTML file can optionally be a full web URL.
