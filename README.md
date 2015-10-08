@@ -1,8 +1,10 @@
 # Twee2
 
-Command-line tool to compile Twee-style (.tw, .twine) interactive fiction source files to Twine 2-style (non-Tiddlywiki) output.
+Command-line tool to compile Twee-style (.tw, .twine) interactive fiction source files to [Twine 2](http://twinery.org/)-style output. Use your favourite text editor to write Twine 2 interactive fiction.
 
-Designed for those who preferred the Twee (for Twine 1) approach to source management, because the command-line is awesome, but who want to take advantage of the new features in Twine 2. Note that this is NOT a Twine 1 to Twine 2 converter, although parts of its functionality go some way to achieving this goal.
+Designed for those who preferred the Twee approach to source management, because the command-line is awesome, but who want to take advantage of the new features in Twine 2. With a little work, this tool may also function as a partial Twine 1 to Twine 2 converter.
+
+For installation and usage, see https://avapoet.github.io/twee2/
 
 ## Philosophy
 
@@ -10,13 +12,7 @@ Designed for those who preferred the Twee (for Twine 1) approach to source manag
 
 I love the direction that Twine 2 has been going in, in regard to ditching the old Tiddlywiki backend and making it easier than ever for developers to integrate their own CSS and Javascript into their stories. However, as a fan of plain-old text editors and not of IDEs, I'm not so keen on the fact that it's now almost-impossible to develop a Twine adventure from the command-line only (there's no "Twee" equivalent for Twine 2). For my own benefit and enjoyment, I aim to fill that gap. If it helps you too, then that's just a bonus.
 
-Right now Twee2 doesn't even support the diversity of original Twee, and it's possible that it never will. As the need arises, though, I may add additional features that seemed to be 'missing' from Twee, to me.
-
-I'd love to hear your thoughts about the future of this gem.
-
-## Prerequisites
-
-You'll need Ruby. Instructions on easily installing it on MacOS, Windows, and Linux can be found at https://www.ruby-lang.org/en/documentation/installation/.
+I'd love to hear your thoughts about the future of this gem. Pull requests are also welcome.
 
 ## Installation
 
@@ -24,11 +20,9 @@ Install using gem
 
     gem install twee2
 
-## Usage
+* [Full installation instructions](https://avapoet.github.io/twee2/install.html).
 
-To see usage examples and fuller instructions (documentation on this page is lacking, but as-yet no documentation is complete):
-
-    twee2
+## Basic Usage
 
 To compile a Twee file into a HTML file using the default format (Harlowe):
 
@@ -38,79 +32,24 @@ To use a specific format, e.g. Snowman:
 
     twee2 build inputfile.twee outputfile.html --format=Snowman
 
-For additional features (e.g. listing known formats, watch-for-changes mode), run twee2 without any parameters.
+For additional features (e.g. listing known formats, watch-for-changes mode), run twee2 without any parameters. Or see the full documentation at https://avapoet.github.io/twee2/documentation.html.
 
 ## Special features
 
-Aside from the regular Twee features, Twee2 provides the following enhancements:
+Aside from the obvious benefits of a "use your own editor" solution, Twee2 provides the following enhancements over Twine 2:
 
-### Multi-file inclusion (super-experimental)
-
-You can combine multiple input files into one via either (or both!) of two different methods:
-
-#### StoryIncludes
-
-Borrowed from Twee: simply list the files to include in the special StoryIncludes passage. Each will be appended to the end of your source file on compilation.
-
-```
-::StoryIncludes
-my-sub-story.tw2
-```
-
-Looking for something more-powerful? Use ::@include-syntax, e.g.:
-
-```
-::IncompleteRoom [haml]
-%p
-  This room is incomplete. Come back later.
-:coffeescript
-  ::@include incomplete-room-js.coffee
-```
-
-The requested file will be nested directly in place. Indent levels will be preserved, which makes it safe for use within HAML, Coffeescript, and SASS. This makes it easy to re-use content throughout your story by simply inserting it in multiple places.
-
-### HAML support
-
-You can declare your passages using [HAML markup](http://haml.info/docs/yardoc/file.REFERENCE.html) by applying a 'haml' tag to the passage, e.g.:
-
-```
-::DarkCorridor [haml]
-%p
-  The floorboards creak beneath your feet as you creep into the darkness of the corridor.
-```
-
-### Coffeescript
-
-If you'd rather write your Javascript in [Coffeescript](http://coffeescript.org/) style, just use a HAML ':coffeescript' block or tag your 'script' block with 'coffee':
-
-```
-::MyJavascripts [coffee script]
-  $ ->
-    alert 'Welcome to my game!'
-```
-
-### SASS/SCSS stylesheets
-
-Prefer SASS for your stylesheets? Just use a 'sass' or 'scss' tag alongside your 'stylesheet' tag, or use a :sass or :scss block in HAML:
-
-```
-::MyStylesheet [scss stylesheet]
-body {
-  color: #eee;
-}
-tw-passage {
-  tw-link {
-    color: red;
-  }
-}
-```
+* Multi-file inclusion - spread your work over multiple files to improve organisation, facilitate better source control, collaborate with others, or make re-usable modules.
+* [HAML](http://haml.info/) support - for those who prefer HAML to Markdown, and for advanced embedding of scripting into passages.
+* [Coffeescript](http://coffeescript.org/) transpiler - optionally write your Javascript in Coffeescript for a smarter, lighter syntax.
+* [SASS/SCSS](http://sass-lang.com/) stylesheets - optionally enhance your CSS with syntactic awesome.
+* Ruby-powered dynamic generation - automate parts of your build chain (e.g. how about a procedurally-built maze of twisty little passages... or even something actually *good*) with Ruby scripting
+* Twine 2 decompilation - reverse-engineer Twine 2 stories into Twee2 source code to convert your projects or to understand other people's.
 
 ## Notes
 
-* This is not a Twee to Harlowe converter. You'll still need to change your macros as described at http://twine2.neocities.org/, and/or rewrite them as Javascript code.
-* Some special story segments (e.g. StorySubtitle) are ignored. You will be warned when this happens.
-* The HTML files that are produced by this can not be readily re-opened by Twine 2 (I think it's because of the missing passage coordinate data).
-* Seriously: this is very-much an experiment and you probably shouldn't use it.
+* This is not a Twee to Harlowe converter. You'll still need to change your macros as described at http://twine2.neocities.org/, and/or rewrite them as Javascript code. However, it might help your efforts to update Twee sources to Twine 2 output.
+* Some special story segments (e.g. StorySubtitle) used in Twee 1 are ignored. You will be warned when this happens.
+* The Twine 2 editor might not be able to re-open stories compiled using Twee2, because Twee2 does not automatically include positional data used by the visual editor (however, you can add this manually if you like).
 
 ## License
 
