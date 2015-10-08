@@ -12,10 +12,10 @@
     <script src="/javascripts/all.js"></script>
   </head>
   <body>
-    <div class='navbar navbar-default navbar-fixed-top'>
+    <div class='navbar navbar-default navbar-static-top'>
       <div class='container'>
         <div class='navbar-header'>
-          <a class='navbar-brand' href='/'>Twee2</a>
+          <a class='navbar-brand' href='./'>Twee2</a>
           <button class='navbar-toggle' data-target='#navbar-main' data-toggle='collapse' type='button'>
             <span class='icon-bar'></span>
             <span class='icon-bar'></span>
@@ -25,7 +25,19 @@
         <div class='navbar-collapse collapse' id='navbar-main'>
           <ul class='nav navbar-nav'>
             <li>
-              <a href='/'>Home</a>
+              <a href='index.html'>Home</a>
+            </li>
+            <li>
+              <a href='install.html'>Install</a>
+            </li>
+            <li>
+              <a href='tutorial.html'>2-minute tutorial</a>
+            </li>
+            <li>
+              <a href='documentation.html'>Documentation</a>
+            </li>
+            <li>
+              <a href='https://github.com/avapoet/twee2'>Source</a>
             </li>
           </ul>
         </div>
@@ -37,7 +49,8 @@
           <div class='col-sm-8 col-xs-12'>
             <h1>Twee2</h1>
             <div class='lead'>
-              Interactive Fiction for Power Users
+              Interactive Fiction for Power Users, powered by
+              <a href='http://twinery.org'>Twine</a>
             </div>
             <ul class='list-inline' style='line-height: 4em;'>
               <li>
@@ -52,10 +65,22 @@
                   2-minute tutorial
                 </a>
               </li>
+              <li>
+                <a class='btn btn-default btn-lg' href='documentation.html' role='button'>
+                  <span aria-hidden class='glyphicon glyphicon-book'></span>
+                  Documentation
+                </a>
+              </li>
+              <li>
+                <a class='btn btn-default btn-lg' href='https://github.com/avapoet/twee2' role='button'>
+                  <span aria-hidden class='glyphicon glyphicon-link'></span>
+                  Source
+                </a>
+              </li>
             </ul>
           </div>
           <div class='col-sm-4 hidden-xs'>
-            <img alt='Twee2 Logo' class='img-responsive' src='/images/twee2-logo.png'>
+            <img alt='Twee2 Logo' class='img-responsive' src='images/twee2-logo.png'>
           </div>
         </div>
       </div>
@@ -104,70 +129,72 @@
           <table class='table table-bordered'>
             <thead>
               <tr>
-                <th>Feature</th>
+                <th class='warning'>
+                  Feature
+                </th>
                 <th>
                   Twine 2
                 </th>
-                <th>
+                <th class='success'>
                   Twee2
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th>Editor</th>
+                <th class='warning text-right'>Editor</th>
                 <td>Web-based "drag-and-drop" editor</td>
-                <td>Your favourite text editor</td>
+                <td class='success'>Your favourite text editor</td>
               </tr>
               <tr>
-                <th>Story formats supported</th>
+                <th class='warning text-right'>Story formats supported</th>
                 <td>Harlowe, Paperthin, Snowman, SugarCube, and any custom ones you add</td>
-                <td>Harlowe, Paperthin, Snowman, SugarCube, and any custom ones you add</td>
+                <td class='success'>Harlowe, Paperthin, Snowman, SugarCube, and any custom ones you add</td>
               </tr>
               <tr>
-                <th>Files saved to...</th>
+                <th class='warning text-right'>Files saved to...</th>
                 <td>Twine 2's own store (can be exported elsewhere)</td>
-                <td>Wherever you like</td>
+                <td class='success'>Wherever you like</td>
               </tr>
               <tr>
-                <th>Inputs</th>
+                <th class='warning text-right'>Inputs</th>
                 <td>Twine 2 files</td>
-                <td>Twee2 files, Twee files, Twine 2 files (except on Windows)</td>
+                <td class='success'>Twee2 files, Twee files, Twine 2 files (except on Windows)</td>
               </tr>
               <tr>
-                <th>Outputs</th>
+                <th class='warning text-right'>Outputs</th>
                 <td>Twine 2 web pages</td>
-                <td>Twine 2 web pages</td>
+                <td class='success'>Twine 2 web pages</td>
               </tr>
               <tr>
-                <th>Supported formatting languages</th>
+                <th class='warning text-right'>Supported formatting languages</th>
                 <td>Markdown</td>
-                <td>Markdown, HAML</td>
+                <td class='success'>Markdown, HAML</td>
               </tr>
               <tr>
-                <th>Supported additional languages</th>
+                <th class='warning text-right'>Supported additional languages</th>
                 <td>CSS, Javascript</td>
-                <td>CSS, Javascript, SASS/SCSS, Coffeescript</td>
+                <td class='success'>CSS, Javascript, SASS/SCSS, Coffeescript</td>
               </tr>
               <tr>
-                <th>Simultaneous working</th>
+                <th class='warning text-right'>Simultaneous working</th>
                 <td>No</td>
-                <td>Yes, using includes and/or source control</td>
+                <td class='success'>Yes, using includes and/or source control</td>
               </tr>
               <tr>
-                <th>Source control support</th>
+                <th class='warning text-right'>Source control support</th>
                 <td>No/barely</td>
-                <td>Yes, use your favourite source control</td>
+                <td class='success'>Yes, use your favourite source control</td>
               </tr>
               <tr>
-                <th>Can split work into multiple files</th>
+                <th class='warning text-right'>Can split work into multiple files</th>
                 <td>No</td>
-                <td>Yes</td>
+                <td class='success'>Yes</td>
               </tr>
               <tr>
-                <th>Regeneration-on-save</th>
+                <th class='warning text-right'>Regeneration-on-save</th>
                 <td>No</td>
-                <td>Yes, with 'watch' command</td>
+                <td class='success'>Yes, with 'watch' command</td>
               </tr>
             </tbody>
           </table>
@@ -181,6 +208,39 @@
               kinds of programming, or who prefer a text interface.
             </li>
           </ul>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-8 col-md-offset-2'>
+          <div class='well'>
+            <h3>Get started!</h3>
+            <ul class='list-inline' style='line-height: 4em;'>
+              <li>
+                <a class='btn btn-primary btn-lg' href='install.html' role='button'>
+                  <span aria-hidden class='glyphicon glyphicon-cloud-download'></span>
+                  Install Twee2
+                </a>
+              </li>
+              <li>
+                <a class='btn btn-default btn-lg' href='tutorial.html' role='button'>
+                  <span aria-hidden class='glyphicon glyphicon-time'></span>
+                  2-minute tutorial
+                </a>
+              </li>
+              <li>
+                <a class='btn btn-default btn-lg' href='documentation.html' role='button'>
+                  <span aria-hidden class='glyphicon glyphicon-book'></span>
+                  Documentation
+                </a>
+              </li>
+              <li>
+                <a class='btn btn-default btn-lg' href='https://github.com/avapoet/twee2' role='button'>
+                  <span aria-hidden class='glyphicon glyphicon-link'></span>
+                  Source
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <footer>
@@ -197,7 +257,9 @@
               <a href='https://danq.me/'>Dan Q</a>
               2015—
               |
-              Twee2 is distributed under the
+              Twee2 is distributed
+              <a href='https://github.com/avapoet/twee2'>via Github</a>
+              under the
               <a href='https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html'>GNU General Public License version 2</a>
               |
               This website is licensed under the
