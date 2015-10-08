@@ -7,8 +7,8 @@
       = " | #{current_page.data.title}" if current_page.data.title
     %meta{'http-equiv' => 'X-UA-Compatible', content: 'IE=edge'}
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
-    = stylesheet_link_tag 'all'
-    = javascript_include_tag 'all'
+    %link{href: 'stylesheets/all.css', rel: 'stylesheet'}/
+    %script{src: 'javascripts/all.js'}
   %body
     .navbar.navbar-default.navbar-static-top
       .container
