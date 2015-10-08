@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>
+      Twee2
+       | Install
+    </title>
+    <meta content='IE=edge' http-equiv='X-UA-Compatible'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <link href="/stylesheets/all.css" rel="stylesheet" />
+    <script src="/javascripts/all.js"></script>
+  </head>
+  <body>
+    <div class='navbar navbar-default navbar-static-top'>
+      <div class='container'>
+        <div class='navbar-header'>
+          <a class='navbar-brand' href='./'>Twee2</a>
+          <button class='navbar-toggle' data-target='#navbar-main' data-toggle='collapse' type='button'>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+          </button>
+        </div>
+        <div class='navbar-collapse collapse' id='navbar-main'>
+          <ul class='nav navbar-nav'>
+            <li>
+              <a href='index.html'>Home</a>
+            </li>
+            <li>
+              <a href='install.html'>Install</a>
+            </li>
+            <li>
+              <a href='tutorial.html'>2-minute tutorial</a>
+            </li>
+            <li>
+              <a href='documentation.html'>Documentation</a>
+            </li>
+            <li>
+              <a href='https://github.com/avapoet/twee2'>Source</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-sm-12'>
+          <h1>Installing Twee2</h1>
+          <h2>Prerequisites</h2>
+          <p>
+            Twee2 requires
+            <a href='https://ruby-lang.org/'>Ruby</a>
+            version 2.0 or higher. You can check whether Ruby is installed and what version it is
+            by opening up a command prompt or terminal and running:
+          </p>
+          <pre>ruby -v</pre>
+          <p>
+            If you don't have Ruby installed, there are several ways to easily install it. Here are some quick ways:
+          </p>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-4'>
+          <div class='well'>
+            <h3>Windows</h3>
+            <p>
+              <a href='http://rubyinstaller.org/downloads/'>Download RubyInstaller</a>
+            </p>
+            <p class='small'>
+              Note that the 'decompile' feature, which turns Twine 2 story files into Twee2 source code, is not supported on Windows.
+            </p>
+          </div>
+        </div>
+        <div class='col-sm-4'>
+          <div class='well'>
+            <h3>MacOS</h3>
+            <p>
+              MacOS comes with Ruby, but it's usually out-of-date.
+              <a href='https://www.interworks.com/blog/ckaukis/2013/03/05/installing-ruby-200-rvm-and-homebrew-mac-os-x-108-mountain-lion'>
+                Install a modern version
+              </a>
+              using RVM.
+            </p>
+          </div>
+        </div>
+        <div class='col-sm-4'>
+          <div class='well'>
+            <h3>Linux</h3>
+            <p>
+              Many Linux distributions have packages for Ruby, but it's often out-of-date.
+              Install
+              <acronym title='Ruby Version Manager'>RVM</acronym>
+              and use it to get Ruby 2.1.6 by running:
+            </p>
+            <code class='small'>gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3&#x000A;\curl -sSL https://get.rvm.io | bash -s stable --ruby=2.1.6&#x000A;rvm use 2.1.6 --default&#x000A;</code>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-12'>
+          <h2>Installing Twee2</h2>
+          <p>
+            To install Twee2, open a command prompt or terminal and type:
+          </p>
+          <pre>gem install twee2</pre>
+          <p>
+            You can check that it's installed correctly by running:
+          </p>
+          <pre>twee2</pre>
+          <p>
+            Now you're ready to dive into the
+            <a href='tutorial.html'>two-minute tutorial</a>
+            or the
+            <a href='documentation.html'>full documentation</a>.
+          </p>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-6'>
+          <h2>Uninstalling Twee2</h2>
+          <p>
+            If you ever want to uninstall Twee2, simply run:
+          </p>
+          <pre>gem uninstall twee2</pre>
+        </div>
+        <div class='col-sm-6'>
+          <h2>Source code</h2>
+          <p>
+            Twee2 is open-source, which means you can read and change its code for yourself.
+            <a href='https://github.com/avapoet/twee2'>Get the code on GitHub.</a>
+          </p>
+        </div>
+      </div>
+      <footer>
+        <hr>
+        <div class='row'>
+          <div class='col-lg-12'>
+            <ul class='list-unstyled'>
+              <li class='pull-right'>
+                <a href='#top'>Back to top</a>
+              </li>
+            </ul>
+            <p class='small'>
+              &copy;
+              <a href='https://danq.me/'>Dan Q</a>
+              2015—
+              |
+              Twee2 is distributed
+              <a href='https://github.com/avapoet/twee2'>via Github</a>
+              under the
+              <a href='https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html'>GNU General Public License version 2</a>
+              |
+              This website is licensed under the
+              <a href='http://opencontent.org/openpub/'>Open Publication License version 1</a>
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

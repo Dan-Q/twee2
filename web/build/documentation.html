@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>
+      Twee2
+       | Full documentation
+    </title>
+    <meta content='IE=edge' http-equiv='X-UA-Compatible'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <link href="/stylesheets/all.css" rel="stylesheet" />
+    <script src="/javascripts/all.js"></script>
+  </head>
+  <body>
+    <div class='navbar navbar-default navbar-static-top'>
+      <div class='container'>
+        <div class='navbar-header'>
+          <a class='navbar-brand' href='./'>Twee2</a>
+          <button class='navbar-toggle' data-target='#navbar-main' data-toggle='collapse' type='button'>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+          </button>
+        </div>
+        <div class='navbar-collapse collapse' id='navbar-main'>
+          <ul class='nav navbar-nav'>
+            <li>
+              <a href='index.html'>Home</a>
+            </li>
+            <li>
+              <a href='install.html'>Install</a>
+            </li>
+            <li>
+              <a href='tutorial.html'>2-minute tutorial</a>
+            </li>
+            <li>
+              <a href='documentation.html'>Documentation</a>
+            </li>
+            <li>
+              <a href='https://github.com/avapoet/twee2'>Source</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-sm-3 col-sm-push-9'>
+          <h2>Index</h2>
+          <ul>
+            <li>
+              <a href='#relationship-to-twine'>Relationship to Twine</a>
+            </li>
+            <li>
+              <a href='#writing-code'>Writing and compiling code</a>
+            </li>
+            <li>
+              <a href='#story-formats'>Understanding story formats</a>
+            </li>
+            <li>
+              <a href='#twee2-syntax'>Twee2 syntax</a>
+              <ul>
+                <li>
+                  <a href='#twee2-syntax-passages'>Passages</a>
+                </li>
+                <li>
+                  <a href='#twee2-syntax-content'>Content</a>
+                </li>
+                <li>
+                  <a href='#twee2-syntax-special-passages'>Special passages</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href='#includes'>Splitting your code into multiple files</a>
+            </li>
+            <li>
+              <a href='#build-config'>Setting build configuration options</a>
+            </li>
+            <li>
+              <a href='#decompiler'>Decompiling Twine 2 stories</a>
+            </li>
+          </ul>
+        </div>
+        <div class='col-sm-9 col-sm-pull-3'>
+          <h1>Full documentation</h1>
+          <h2 id='relationship-to-twine'>Relationship to Twine</h2>
+          <p>
+            Twee2 is built on top of
+            <a href='http://twinery.org/'>Twine 2</a>,
+            minus the graphical user interface. As a result, virtually all of the
+            <a href='http://twinery.org/wiki/twine2:guide'>documentation about Twine 2</a>
+            (and specifically the documentation about the
+            <a href='http://twinery.org/wiki/twine2:how_to_choose_a_story_format'>different story formats</a>)
+            is relevant to Twee2, too.
+            Because Twee2 is inspired by Twee, its documentation is also a valuable resource: however note that
+            you can't use Twee 'macros' in Twee2.
+          </p>
+          <h2 id='writing-code'>Writing and compiling code</h2>
+          <p>
+            Write Twee2 code using your favourite text editor. Syntax highlighting is available via
+            <a href='https://github.com/monospaced/sublime-twee'>this Sublime Text plugin</a>
+            for Twee. By convention, Twee2 source files have the
+            <code>.tw2</code>
+            extension.
+          </p>
+          <p>
+            Compile Twee2 files using the
+            <code>twee2</code>
+            command-line tool. There are two important modes of operation:
+          </p>
+          <ul>
+            <li>
+              <code>twee2 build input.tw2 output.html</code>
+              produces output.html based on the code in input.tw2
+            </li>
+            <li>
+              <code>twee2 watch input.tw2 output.html</code>
+              does the same thing, but
+              <em>watches</em>
+              input.tw2 for changes, automatically recompiling whenever it is updated (note that it's not
+              smart enough to understand when
+              <a href='#includes'>'included'</a>
+              files have been changed, though).
+            </li>
+          </ul>
+          <p>
+            Because Twee2 source files are just plain text files, they're well-suited to use with
+            source control systems: you could, for example, use
+            <a href='https://github.com/'>Github</a>
+            to share your code or to collaborate with other authors, even working on the same file.
+          </p>
+          <h2 id='story-formats'>Understanding story formats</h2>
+          <p>
+            Twee2 comes with built-in support for all of the same story formats that Twine 2 does:
+          </p>
+          <ul>
+            <li>
+              <a href='http://twine2.neocities.org/'>Harlowe</a>
+              - the default format, which includes a simplified scripting format
+            </li>
+            <li>
+              <a href='https://bitbucket.org/klembot/snowman-2'>Snowman</a>
+              - a minimal format that uses Underscore.js templates and jQuery to provide programmers with a powerful toolset
+            </li>
+            <li>
+              <a href='http://www.motoslave.net/sugarcube/'>SugarCube</a>
+              - a TiddlyWiki-powered format that comes with support for multiple save 'slots' and a Twine 1/Twee 'macro'-like scripting syntax
+            </li>
+            <li>
+              Paperthin - used when you select "View Proofing Copy" in Twine 2, this minimal skeleton isn't really an output format as it is a proofing tool
+            </li>
+          </ul>
+          <p>
+            If you've having difficulty choosing between them, there's
+            <a href='http://twinery.org/wiki/twine2:how_to_choose_a_story_format'>a summary of the differences</a>
+            in the Twine 2 documentation.
+          </p>
+          <p>
+            To specify which format to use during compilation, use the optional
+            <code>--format</code>
+            parameter. E.g. you might type
+            <code>twee2 build input.tw2 output.html --format=Snowman</code>.
+            You can get a list of the formats that Twee2 natively understands by running
+            <code>twee2 formats</code>.
+          </p>
+          <p>
+            It's possible to use any story format, e.g. if you've downloaded or written your own, by specifying the path
+            to the story format's directory (the one containing the format.js file) in your
+            <code>--format</code>
+            parameter. For example, you might run
+            <code>twee2 build input.tw2 output.html --format=./MyFormat</code>.
+          </p>
+          <p>
+            Rather than setting the format on the command-line, it's possible to specify it within your source code
+            itself, using
+            <a href='#build-config'>build configuration</a>
+            options.
+          </p>
+          <h2 id='twee2-syntax'>Twee2 syntax</h2>
+          <p>
+            Twee2 uses a syntax that's heavily inspired-by but not 100% compatible with Twee:
+          </p>
+          <h3 id='twee2-syntax-passages'>Passages</h3>
+          <p>
+            Each block of text in Twee2 exists in a
+            <em>passage</em>.
+            Each passage begins with a title, which is prefixed by two colons:
+          </p>
+          <p>
+            <code>::My Passage Name</code>
+          </p>
+          <p>
+            Passage titles may only contain letters, numbers, basic punctuation, and spaces. Some authors prefer to avoid
+            spaces in their passage titles. Passage titles are not case-sensitive: you don't have to use the same case when
+            referring to a passage every time. Passages titles
+            <em>should</em>
+            be unique within a story: if they're not, only the last passage with a given title will be included in the story.
+          </p>
+          <p>
+            Passage titles may optionally be suffixed by one or both of:
+          </p>
+          <ul>
+            <li>
+              Any number of
+              <em>tags</em>,
+              separated by spaced, inside a pair of square brackets. E.g:
+              <br>
+              <code>::My Passage Name [tagone tagtwo]</code>
+              <br>
+              Tags can be used by code in your story (e.g. to send the player to a randomly-selected passage from a subset).
+              <a href='#twee2-syntax-special-passages'>Some tags have special meanings</a>,
+              as described below.
+            </li>
+            <li>
+              A pair of coordinates, separated by a comma and enclosed within angle brackets. E.g.:
+              <br>
+              <code>::My Passage Name <123,456></code>
+              <br>
+              Coordinates have no meaning to Twee2, but they can be used to enhance compatability with Twine 2: Twine 2 uses
+              these coordinates to decide where to show the passages in its WYSIWYG editor.
+            </li>
+          </ul>
+          <p>
+            If you include both tags and coordinates after a passage, the tags must come before the coordinates, e.g.:
+          </p>
+          <p>
+            <code>::My Passage Name [tagone tagtwo] <123,456></code>
+          </p>
+          <p>
+            Some passages and tags
+            <a href='#twee2-syntax-special-passages'>have special meanings</a>,
+            as described below
+          </p>
+          <h3 id='twee2-syntax-content'>Content</h3>
+          <p>
+            Each passage may contain any amount of content, most of which will be stuff that the player sees. Many
+            story formats understand
+            <em>Markdown</em>
+            formatting in passages, which makes it possible to easily add formatting to your passages. Links to different
+            passages are supported in any of the following syntaxes (where 'Dungeon' is the name of the passage they'll be
+            transported if they click the link, and 'click here', where present, is the text that they'll see to click on):
+          </p>
+          <ul>
+            <li>
+              <code>[Dungeon]</code>
+            </li>
+            <li>
+              <code>[click here->Dungeon]</code>
+            </li>
+            <li>
+              <code>[Dungeon<-click here]</code>
+            </li>
+            <li>
+              <code>[click here|Dungeon]</code>
+            </li>
+          </ul>
+          <h2 id='twee2-syntax-special-passages'>Special passages</h2>
+          <p>
+            Some passage names and tags have special meanings. These are:
+          </p>
+          <h3>::Start</h3>
+          <p>
+            The
+            <code>::Start</code>
+            passage will, by default, be used as the initial passage that your player sees when they start reading.
+            You can override this using
+            <a href='#build-config'>build configuration options</a>,
+            but it's probably easier just to follow this convention.
+          </p>
+          <h3>::StorySubtitle, ::StoryAuthor, ::StoryMenu, and ::StorySettings</h3>
+          <p>
+            These names were used for special passages in Twee 1. They're not used by Twee2, but to maintain compatability
+            with Twee 1 they're ignored and you should avoid using them unless you're writing a story that needs to be
+            capable of being compiled by both Twee 1 and Twee2.
+          </p>
+          <h3>::StoryIncludes</h3>
+          <p>
+            Any
+            <code>::StoryIncludes</code>
+            passages (you can have as many as you like, but you probably should avoid having more than one in any file in
+            order to avoid confusion) are treated as lists of secondary Twee2 files to 'include' into your story. This is
+            described in more detail below, under
+            <a href='#includes'>splitting your code into multiple files</a>.
+          </p>
+          <h3>[stylesheet]</h3>
+          <p>
+            Any passages with the 'stylesheet' tag will not be included in your story, but their contents will be injected
+            into the story's stylesheet. For example, you could write:
+          </p>
+          <p>
+            <pre>::MyCoolStylesheet [stylesheet]&#x000A;&#x000A;body {&#x000A;  background: #eee;&#x000A;}&#x000A;&#x000A;tw-passage tw-link {&#x000A;  color: red;&#x000A;}</pre>
+          </p>
+          <p>
+            It's also possible to use
+            <a href='http://sass-lang.com/'>SASS</a>
+            to enhance your stylesheet. Simply add the tag 'sass' or 'scss' to specify the dialect of SASS that you want
+            to use, e.g.:
+            <pre>::MyCoolStylesheet [scss stylesheet]&#x000A;&#x000A;body {&#x000A;  background: #eee;&#x000A;}&#x000A;&#x000A;tw-passage {&#x000A;  tw-link {&#x000A;    color: red;&#x000A;  }&#x000A;}&#x000A;</pre>
+          </p>
+          <h3>[script]</h3>
+          <p>
+            Any passages with the 'script' tag will not be included in your story, but their contents will be injected
+            into the resulting web page as Javascript. For example, you could write:
+          </p>
+          <p>
+            <pre>::SomeAwesomeCode [script]&#x000A;&#x000A;alert('This message will appear when the adventure starts!');</pre>
+          </p>
+          <p>
+            It's also possible to use
+            <a href='http://coffeescript.org/'>Coffeescript</a>
+            to make your Javascript development more-beautiful. Simply add the tag 'coffee' to your script block:
+            <pre>::SomeAwesomeCode [coffee script]&#x000A;&#x000A;alert 'This message will appear when the adventure starts!'&#x000A;</pre>
+          </p>
+          <h3>[haml]</h3>
+          <p>
+            Put the 'haml' tag into your regular passages in order to allow you to write
+            <a href='http://haml.info/'>HAML</a>
+            code into your passages. HAML is a sophisticated templating language for producing HTML output, and
+            for some it might be preferable to writing plain old Markdown. This includes the ability to inject
+            Javascript/CoffeeScript into particular passages. For example, you could write:
+          </p>
+          <p>
+            <pre>::NicksBar [haml]&#x000A;%p&#x000A;  Nick's Bar is exactly the kind of nightspot that helps you remember why you quit drinking.&#x000A;  A depressed-looking barman pours another beer for an equally depressed-looking drunk, while&#x000A;  over in the corner a street thug plays with a knife as he eyes you up. The floor is sticky&#x000A;  and the air reeks of stale alcohol.&#x000A;%p&#x000A;  %strong What would you like to do?&#x000A;%ul&#x000A;  %li [Nick<-Talk to the bartender]&#x000A;  %li [BarToilet<-Go to the bathroom]&#x000A;  %li [BarSit<-Sit in a booth]&#x000A;&#x000A;:coffeescript&#x000A;  $ ->&#x000A;    alert "This message will appear when you reach Nick's Bar!"&#x000A;</pre>
+          </p>
+          <h3>[twee2]</h3>
+          <p>
+            Passages marked with the 'twee2' tag are not included in your story. However, any Ruby code in them
+            will be executed when the passage is processed by the builder. This can be used to
+            <a href='#build-config'>set build configuration options</a>
+            as described below.
+          </p>
+          <h2 id='includes'>Splitting your code into multiple files</h2>
+          <p>
+            A major benefit of Twee2 over Twine 2 is that it's possible to break apart your story into multiple
+            files, which can be used to structure your work, to facilitate teamworking with or without source
+            control, and to make 'reusable' components such as stylesheets and scripts which can then be injected
+            into later stories. There are two ways to do this:
+          </p>
+          <h3>Using ::StoryIncludes</h3>
+          <p>
+            Insert a
+            <code>::StoryIncludes</code>
+            passage into your file and list within it the names of the files to include. Each will be appended
+            to the end of your story before compilation. For example, the following game skeleton includes the
+            contents of four other files - the main file contains only the
+            <code>::Start</code>
+            passage:
+          </p>
+          <p>
+            <pre>::Start&#x000A;**Journey To The Centre Of The Earth**&#x000A;&#x000A;by Dan Q&#x000A;&#x000A;[Play]&#x000A;&#x000A;::StoryIncludes&#x000A;first_section.tw2&#x000A;second_section.tw2&#x000A;stylesheet.tw2&#x000A;javascripts.tw2&#x000A;</pre>
+          </p>
+          <h3>Using ::@include directives</h3>
+          <p>
+            You can put an
+            <code>::@include</code>
+            directive anywhere in your code to insert the contents of another file at that point.
+            <code>::@include</code>
+            respects your current indentation level (e.g. when using HAML), so it's safe to use at any indentation
+            'depth'. For example, the following passages each include a separate file that contains a description
+            of the house in the distance: that description is shared between the two passages, and updating the
+            file updates the description in both.
+          </p>
+          <p>
+            <pre>::Greenhouse [haml]&#x000A;%p&#x000A;  Light shines brightly through the tall glass walls of the ornate wrought-iron greenhouse, and&#x000A;  the plants are verdant and lively. The [Garden<-door] stands open and a cool breeze blows in.&#x000A;%p&#x000A;  ::@include description-of-house.tw2&#x000A;&#x000A;::Garden [haml]&#x000A;%p&#x000A;  The garden winds around decorative trees betwen the [greenhouse] and the [Porch<-mansion].&#x000A;%p&#x000A;  ::@include description-of-house.tw2&#x000A;</pre>
+          </p>
+          <p>
+            Note that neither method of including code works recursively (i.e. you can't include a file that in
+            turn includes another file), but this may be fixed in a future version.
+          </p>
+          <h2 id='build-config'>Setting build configuration options</h2>
+          <p>
+            Creating a passage with the 'twee2' tag can be used to run arbritrary Ruby code or to pass additional
+            options to the Twee2 compiler. This expands the potential capability of Twee2 almost-limitlessly, but for now
+            the only supported options are:
+          </p>
+          <ul>
+            <li>
+              <strong>
+                <code>Twee2::build_config.story_ifid = '<em>[your IFID]</em>'</code>
+              </strong>
+              - used to set the
+              <a href='http://www.ifwiki.org/index.php/IFID'>IFID of your story, to facilitate catologuing. If you</a>
+              don't include this directive, the compiler will suggest a random one to you every time you run it and
+              explain how to add it: if you're going to publish your story publicly, you should add the line it
+              suggests before you do so.
+            </li>
+            <li>
+              <strong>
+                <code>Twee2::build_config.story_format = '<em>[a story format]</em>'</code>
+              </strong>
+              - an alternative way of specifying the story format used by your story, rather than using the --format
+              switch to the compiler. The syntax of format names and means of specifying externally-stored formats is
+              identical to
+              <a href='#story-formats'>using the --format switch</a>.
+            </li>
+          </ul>
+          <p>
+            For example:
+          </p>
+          <p>
+            <pre>::Configuration [twee2]&#x000A;Twee2::build_config.story_ifid = '41AB7776-D198-40F5-BD54-0493D49DA58C'&#x000A;Twee2::build_config.story_format = 'Snowman'&#x000A;</pre>
+          </p>
+          <h2 id='decompiler'>Decompiling Twine 2 stories</h2>
+          <p>
+            It's possible to convert existing (compiled) Twee2/Twine 2 story files, in HTML format, back into
+            Twee2 source files for further editing. This can be used to convert your Twine 2 projects into Twee2
+            files or to easily examine the contents of somebody else's story. This feature does not work on Microsoft
+            Windows. To use it, run:
+          </p>
+          <p>
+            <code>twee2 decompile input.html output.tw2</code>
+          </p>
+          <p>
+            The input HTML file can optionally be a full web URL.
+          </p>
+        </div>
+      </div>
+      <footer>
+        <hr>
+        <div class='row'>
+          <div class='col-lg-12'>
+            <ul class='list-unstyled'>
+              <li class='pull-right'>
+                <a href='#top'>Back to top</a>
+              </li>
+            </ul>
+            <p class='small'>
+              &copy;
+              <a href='https://danq.me/'>Dan Q</a>
+              2015—
+              |
+              Twee2 is distributed
+              <a href='https://github.com/avapoet/twee2'>via Github</a>
+              under the
+              <a href='https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html'>GNU General Public License version 2</a>
+              |
+              This website is licensed under the
+              <a href='http://opencontent.org/openpub/'>Open Publication License version 1</a>
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
