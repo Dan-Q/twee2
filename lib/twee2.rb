@@ -28,6 +28,16 @@ module Twee2
         exit
       end
     end
+    # Load story format, if for some reason Twee2::build_config.story_format is set to a string rather than an instance
+    if build_config.story_format.is_a?(String)
+      new_format = build_config.story_format
+      begin
+        build_config.story_format = StoryFormat::new(new_format)
+      rescue StoryFormatNotFoundException
+        puts "ERROR: story format '#{new_format}' not found."
+        exit
+      end
+    end
     # Warn if IFID not specified
     if !build_config.story_ifid_specified
       puts "NOTICE: You haven't specified your IFID. Consider adding to your code -"
