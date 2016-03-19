@@ -9,6 +9,7 @@ module Twee2
 
   class StoryFile
     attr_accessor :passages
+    attr_reader :child_story_files
 
     HAML_OPTIONS = {
       remove_whitespace: true
@@ -22,6 +23,8 @@ module Twee2
     def initialize(filename)
       raise(StoryFileNotFoundException) if !File::exists?(filename)
       @passages, current_passage = {}, nil
+      @child_story_files = []
+
       # Load file into memory to begin with
       lines = File::read(filename).split(/\r?\n/)
       # First pass - go through and perform 'includes'
@@ -33,9 +36,11 @@ module Twee2
         elsif line =~ /^::/
           in_story_includes_section = false
         elsif in_story_includes_section && (line.strip != '')
+          child_file = line.strip
           # include a file here because we're in the StoryIncludes section
-          if File::exists?(line.strip)
-            lines.push(*File::read(line.strip).split(/\r?\n/)) # add it on to the end
+          if File::exists?(child_file)
+            lines.push(*File::read(child_file).split(/\r?\n/)) # add it on to the end
+            child_story_files.push(child_file)
           else
             puts "WARNING: tried to include file '#{line.strip}' via StoryIncludes but file was not found."
           end
