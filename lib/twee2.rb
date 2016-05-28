@@ -1,5 +1,3 @@
-Encoding.default_external = Encoding.default_internal = Encoding::UTF_8
-
 # Prerequisites (managed by bundler)
 require 'rubygems'
 require 'bundler/setup'
@@ -53,9 +51,11 @@ module Twee2
   def self.watch(input, output, options = {})
     puts "Compiling #{output}"
     build(input, output, options)
-    puts "Watching #{input}"
-    FileWatcher.new(input).watch do
-      puts "Recompiling #{output}"
+    puts "Watching #{input} and included children"
+    watch_files = build_config.story_file.child_story_files
+    watch_files.unshift(input)
+    FileWatcher.new(watch_files).watch do |filename|
+      puts "#{filename} changed. Recompiling #{output}"
       build(input, output, options)
     end
   end
