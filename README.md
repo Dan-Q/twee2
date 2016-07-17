@@ -4,7 +4,7 @@ Command-line tool to compile Twee-style (.tw, .twine) interactive fiction source
 
 Designed for those who preferred the Twee approach to source management, because the command-line is awesome, but who want to take advantage of the new features in Twine 2. With a little work, this tool may also function as a partial Twine 1 to Twine 2 converter.
 
-For installation and usage, see https://avapoet.github.io/twee2/
+For installation and usage, see https://dan-q.github.io/twee2/
 
 ## Philosophy
 
@@ -20,7 +20,7 @@ Install using gem
 
     gem install twee2
 
-* [Full installation instructions](https://avapoet.github.io/twee2/install.html).
+* [Full installation instructions](https://dan-q.github.io/twee2/install.html).
 
 ## Basic Usage
 
@@ -32,7 +32,7 @@ To use a specific format, e.g. Snowman:
 
     twee2 build inputfile.twee outputfile.html --format=Snowman
 
-For additional features (e.g. listing known formats, watch-for-changes mode), run twee2 without any parameters. Or see the full documentation at https://avapoet.github.io/twee2/documentation.html.
+For additional features (e.g. listing known formats, watch-for-changes mode), run twee2 without any parameters. Or see the full documentation at https://dan-q.github.io/twee2/documentation.html.
 
 ## Special features
 
