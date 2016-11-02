@@ -76,8 +76,13 @@ module Twee2
         elsif k == 'StoryIncludes'
           @passages[k][:exclude_from_output] = true # includes should already have been handled above
         elsif %w{StorySubtitle StoryAuthor StoryMenu StorySettings}.include? k
-          puts "WARNING: ignoring passage '#{k}'"
-          @passages[k][:exclude_from_output] = true
+          # SugarCube still uses some of the Twine 1 special passages,
+          # so do not ignore them when using SugarCube story format
+          # ('StorySettings' passage is never used)
+          unless Twee2::build_config.story_format =~ /sugarcube/i && k != 'StorySettings'
+            puts "WARNING: ignoring passage '#{k}'"
+            @passages[k][:exclude_from_output] = true
+          end
         elsif @passages[k][:tags].include? 'stylesheet'
           story_css << "#{@passages[k][:content]}\n"
           @passages[k][:exclude_from_output] = true
