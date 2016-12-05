@@ -51,6 +51,16 @@ Aside from the obvious benefits of a "use your own editor" solution, Twee2 provi
 * Some special story segments (e.g. StorySubtitle) used in Twee 1 are ignored. You will be warned when this happens.
 * The Twine 2 editor might not be able to re-open stories compiled using Twee2, because Twee2 does not automatically include positional data used by the visual editor (however, you can add this manually if you like).
 
+## Build
+
+To build a local copy of the gem:
+
+	gem build twee2.gemspec
+
+To install it locally (e.g., for version number 0.5.0):
+
+	gem install twee2-0.5.0.gem
+
 ## License
 
 This code is released under the GPL, version 2. It includes code (in the storyFormats directory) by other authors, including Leon Arnott: please read their licenses before redistributing.
