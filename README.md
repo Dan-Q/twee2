@@ -6,6 +6,10 @@ Designed for those who preferred the Twee approach to source management, because
 
 For installation and usage, see https://dan-q.github.io/twee2/
 
+## Fork
+
+This fork fixes an issue with special passages that you may encounter with the story formats [SugarCube](http://www.motoslave.net/sugarcube/) or [Paloma](http://mcdemarco.net/tools/scree/paloma/).
+
 ## Philosophy
 
 (Why does this exist? Where is it going?)
