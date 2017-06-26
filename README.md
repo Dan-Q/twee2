@@ -6,6 +6,10 @@ Designed for those who preferred the Twee approach to source management, because
 
 For installation and usage, see https://dan-q.github.io/twee2/
 
+## Fork
+
+This fork fixes an issue with special passages that you may encounter with the story formats [SugarCube](http://www.motoslave.net/sugarcube/) or [Paloma](http://mcdemarco.net/tools/scree/paloma/).
+
 ## Philosophy
 
 (Why does this exist? Where is it going?)
@@ -50,6 +54,16 @@ Aside from the obvious benefits of a "use your own editor" solution, Twee2 provi
 * This is not a Twee to Harlowe converter. You'll still need to change your macros as described at http://twine2.neocities.org/, and/or rewrite them as Javascript code. However, it might help your efforts to update Twee sources to Twine 2 output.
 * Some special story segments (e.g. StorySubtitle) used in Twee 1 are ignored. You will be warned when this happens.
 * The Twine 2 editor might not be able to re-open stories compiled using Twee2, because Twee2 does not automatically include positional data used by the visual editor (however, you can add this manually if you like).
+
+## Build
+
+To build a local copy of the gem:
+
+	gem build twee2.gemspec
+
+To install it locally (e.g., for version number 0.5.0):
+
+	gem install twee2-0.5.0.gem
 
 ## License
 

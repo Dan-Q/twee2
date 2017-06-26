@@ -75,9 +75,6 @@ module Twee2
           @passages[k][:exclude_from_output] = true
         elsif k == 'StoryIncludes'
           @passages[k][:exclude_from_output] = true # includes should already have been handled above
-        elsif %w{StorySubtitle StoryAuthor StoryMenu StorySettings}.include? k
-          puts "WARNING: ignoring passage '#{k}'"
-          @passages[k][:exclude_from_output] = true
         elsif @passages[k][:tags].include? 'stylesheet'
           story_css << "#{@passages[k][:content]}\n"
           @passages[k][:exclude_from_output] = true
