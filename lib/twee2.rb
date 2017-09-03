@@ -42,7 +42,7 @@ module Twee2
       puts "::StoryIFID[twee2]\nTwee2::build_config.story_ifid = '#{build_config.story_ifid}'"
     end
     # Produce output file
-    File::open(output, 'w') do |out|
+    File::open(output, 'w', encoding: "utf-8") do |out|
       out.print build_config.story_format.compile
     end
     puts "Done"
@@ -77,7 +77,7 @@ module Twee2
   unless Gem.win_platform?
     # Reverse-engineers a Twee2/Twine 2 output HTML file into a Twee2 source file
     def self.decompile(url, output)
-      File::open(output, 'w') do |out|
+      File::open(output, 'w', encoding: "utf-8") do |out|
         out.print Decompiler::decompile(url)
       end
       puts "Done"
