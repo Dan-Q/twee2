@@ -74,14 +74,12 @@ module Twee2
     end
   end
 
-  unless Gem.win_platform?
-    # Reverse-engineers a Twee2/Twine 2 output HTML file into a Twee2 source file
-    def self.decompile(url, output)
-      File::open(output, 'w') do |out|
-        out.print Decompiler::decompile(url)
-      end
-      puts "Done"
+  # Reverse-engineers a Twee2/Twine 2 output HTML file into a Twee2 source file
+  def self.decompile(url, output)
+    File::open(output, 'w') do |out|
+      out.print Decompiler::decompile(url)
     end
+    puts "Done"
   end
 
   def self.help
