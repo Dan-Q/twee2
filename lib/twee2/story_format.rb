@@ -16,7 +16,16 @@ module Twee2
 
     # Given a story file, injects it into the StoryFormat and returns the HTML results
     def compile
-      @source.gsub('{{STORY_NAME}}', Twee2::build_config.story_name).gsub('{{STORY_DATA}}', Twee2::build_config.story_file.xmldata).gsub('{{STORY_FORMAT}}', @name)
+      @source\
+        .gsub('%', '%%') \
+        .gsub('{{STORY_NAME}}',   '%{STORY_NAME}')   \
+        .gsub('{{STORY_DATA}}',   '%{STORY_DATA}')   \
+        .gsub('{{STORY_FORMAT}}', '%{STORY_FORMAT}') \
+      % {
+        STORY_NAME:   Twee2::build_config.story_name,
+        STORY_DATA:   Twee2::build_config.story_file.xmldata,
+        STORY_FORMAT: @name,
+      }
     end
 
     # Returns an array containing the known StoryFormat names

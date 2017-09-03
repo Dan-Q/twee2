@@ -114,7 +114,7 @@ module Twee2
     # Returns the rendered XML that represents this story
     def xmldata
       data = @story_data.target!
-      data.gsub('{{STORY_JS}}', @story_js)
+      data.gsub('%', '%%').gsub('{{STORY_JS}}', '%{story_js}') % {story_js: @story_js}
     end
 
     # Runs HAML, Coffeescript etc. preprocessors across each applicable passage
