@@ -26,7 +26,7 @@ module Twee2
       @child_story_files = []
 
       # Load file into memory to begin with
-      lines = File::read(filename).split(/\r?\n/)
+      lines = File::read(filename, encoding: 'utf-8').split(/\r?\n/)
       # First pass - go through and perform 'includes'
       i, in_story_includes_section = 0, false
       while i < lines.length
