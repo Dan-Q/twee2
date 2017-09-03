@@ -8,7 +8,7 @@ module Twee2
     def initialize(name)
       raise(StoryFormatNotFoundException) if !File::exists?(format_file_path = Twee2::buildpath("storyFormats/#{name}/format.js")) && !File::exists?(format_file_path = "#{name}/format.js")
       @name = name
-      format_file = File::read(format_file_path)
+      format_file = File::read(format_file_path, encoding: 'utf-8')
       format_data = format_file.match(/(["'])source\1 *: *(["']).*?[^\\]\2/)[0]
       format_data_for_json = "\{#{format_data}\}"
       @source = JSON.parse(format_data_for_json)['source']
