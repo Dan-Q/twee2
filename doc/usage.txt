@@ -16,7 +16,6 @@ Usage:
   twee2 decompile [URL] [output.tw2]
     Decompiles a Twee2/Twine 2 HTML output file at a specified URL into
     a Twee2 source file.
-    NOT AVAILABLE ON MICROSOFT WINDOWS.
 
   twee2 version
     Reports what version of Twee2 you're using, and checks what the
