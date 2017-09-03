@@ -48,7 +48,7 @@ module Twee2
           # include a file here because an @include directive was spotted
           prefix, filename = $1, $2.strip
           if File::exists?(filename)
-            lines[i,1] = File::read(filename).split(/\r?\n/).map{|l|"#{prefix}#{l}"} # insert in-place, with prefix of appropriate amount of whitespace
+            lines[i,1] = File::read(filename, encoding: 'utf-8').split(/\r?\n/).map{|l|"#{prefix}#{l}"} # insert in-place, with prefix of appropriate amount of whitespace
             i-=1 # process this line again, in case of ::@include nesting
           else
             puts "WARNING: tried to ::@include file '#{filename}' but file was not found."
