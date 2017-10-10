@@ -1,0 +1,42 @@
+::StoryTitle
+
+Fancy Title
+
+::Start
+
+You are [[here]].
+
+::Here
+
+You are not [[there]].
+
+::There [haml]
+
+%p
+  %li
+    Or maybe you are? Go back to [[start]]
+
+::Coffee [coffee script]
+
+csAddNumbers = (x,y) -> x + y
+
+$ ->
+  alert("The secret number is " + csAddNumbers(1,2))
+
+::Styles [stylesheet]
+
+body {
+  background-color: darkblue;
+}
+
+::SassStyles [sass stylesheet]
+
+$variable: darkgreen
+
+p
+  background-color: $variable
+
+
+::Javascript [script]
+
+console.log('not much happening in this story so far')
