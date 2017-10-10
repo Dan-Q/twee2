@@ -1,0 +1,11 @@
+::StoryTitle
+War Games
+
+::StoryIncludes
+stylesheets/main.sass.tw2
+javascripts/main.js.tw2
+sections/section1.tw2
+sections/section2.tw2
+
+::Start
+Shall We Play A [[Game]]?
