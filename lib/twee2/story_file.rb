@@ -33,7 +33,7 @@ module Twee2
         line = lines[i]
         if line =~ /^:: *StoryIncludes */
           in_story_includes_section = true
-        elsif line =~ /^::/
+        elsif line =~ /^::(?!@)/
           in_story_includes_section = false
         elsif in_story_includes_section && (line.strip != '')
           child_file = line.strip
