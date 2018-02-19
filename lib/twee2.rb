@@ -41,6 +41,8 @@ module Twee2
       puts "NOTICE: You haven't specified your IFID. Consider adding to your code -"
       puts "::StoryIFID[twee2]\nTwee2::build_config.story_ifid = '#{build_config.story_ifid}'"
     end
+    # Make sure output directory exists
+    FileUtils.mkdir_p(File.dirname(output))
     # Produce output file
     File::open(output, 'w', encoding: "utf-8") do |out|
       out.print build_config.story_format.compile
