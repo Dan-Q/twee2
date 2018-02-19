@@ -9,7 +9,7 @@ module Twee2
     def self.decompile(url)
       result = ''
       # Load the compiled HTML and sanity-check it
-      html = Nokogiri::HTML(open(url))
+      html = Nokogiri::HTML(open(url), nil, 'utf-8')
       raise(DecompilationFailedException, 'tw-storydata not found') unless storydata = html.at_css('tw-storydata')
       # Extract the tw-storydata#name (StoryTitle) and #startnode
       result << "::StoryTitle\n#{storydata[:name].strip}\n\n"
