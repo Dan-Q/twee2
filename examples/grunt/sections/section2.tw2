@@ -1,0 +1,9 @@
+::Room 1
+You Win!
+
+[[Start Over->Start]]
+
+::Room 2
+Sorry, You Lose!
+
+[[Start Over->Start]]

@@ -1,0 +1,11 @@
+::Main Stylesheet [sass stylesheet]
+
+body
+  background-color: blue
+
+tw-story
+  font-size: 2rem
+  color: white
+  
+tw-link
+  color: red
