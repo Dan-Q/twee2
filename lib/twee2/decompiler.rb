@@ -15,6 +15,11 @@ unless Gem.win_platform?
         # Extract the tw-storydata#name (StoryTitle) and #startnode
         result << "::StoryTitle\n#{storydata[:name].strip}\n\n"
         startnode_pid, startnode_name = storydata[:startnode].strip, nil
+        ifid = storydata[:ifid]
+        story_format = storydata[:format]
+        if story_format == 'SugarCube' && storydata[:'format-version'].start_with?('2.')
+          story_format = 'SugarCube2'
+        end
         # Extract the custom CSS and Javascript, if applicable
         if (css = storydata.at_css('#twine-user-stylesheet')) && ((css_content = css.content.strip) != '')
           result << "::StoryCSS [stylesheet]\n#{css_content}\n\n"
@@ -35,6 +40,8 @@ unless Gem.win_platform?
         # Write the Twee2 settings out (compatability layer)
         result << "::Twee2Settings [twee2]\n"
         result << "@story_start_name = '#{startnode_name.gsub("'", "\\'")}'\n" if startnode_name
+        result << "Twee2::build_config.story_ifid = '#{ifid}'\n"
+        result << "Twee2::build_config.story_format = '#{story_format}'\n"
         result << "\n"
         # Return the result
         result
