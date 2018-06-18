@@ -50,7 +50,6 @@ Aside from the obvious benefits of a "use your own editor" solution, Twee2 provi
 ## Notes
 
 * This is not a Twee to Harlowe converter. You'll still need to change your macros as described at http://twine2.neocities.org/, and/or rewrite them as Javascript code. However, it might help your efforts to update Twee sources to Twine 2 output.
-* Some special story segments (e.g. StorySubtitle) used in Twee 1 are ignored. You will be warned when this happens.
 * The Twine 2 editor might not be able to re-open stories compiled using Twee2, because Twee2 does not automatically include positional data used by the visual editor (however, you can add this manually if you like).
 
 ## Build
