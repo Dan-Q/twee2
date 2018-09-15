@@ -41,8 +41,10 @@ module Twee2
       puts "NOTICE: You haven't specified your IFID. Consider adding to your code -"
       puts "::StoryIFID[twee2]\nTwee2::build_config.story_ifid = '#{build_config.story_ifid}'"
     end
+    # Make sure output directory exists
+    FileUtils.mkdir_p(File.dirname(output))
     # Produce output file
-    File::open(output, 'w') do |out|
+    File::open(output, 'w', encoding: "utf-8") do |out|
       out.print build_config.story_format.compile
     end
     puts "Done"
@@ -74,14 +76,12 @@ module Twee2
     end
   end
 
-  unless Gem.win_platform?
-    # Reverse-engineers a Twee2/Twine 2 output HTML file into a Twee2 source file
-    def self.decompile(url, output)
-      File::open(output, 'w') do |out|
-        out.print Decompiler::decompile(url)
-      end
-      puts "Done"
+  # Reverse-engineers a Twee2/Twine 2 output HTML file into a Twee2 source file
+  def self.decompile(url, output, encoding:"utf-8")
+    File::open(output, 'w') do |out|
+      out.print Decompiler::decompile(url)
     end
+    puts "Done"
   end
 
   def self.help
