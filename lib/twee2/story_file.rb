@@ -9,7 +9,7 @@ module Twee2
 
   class StoryFile
     attr_accessor :passages
-    attr_reader :child_story_files
+    attr_reader :child_story_files, :filename
 
     HAML_OPTIONS = {
       remove_whitespace: true
@@ -22,6 +22,7 @@ module Twee2
     # Loads the StoryFile with the given name
     def initialize(filename)
       raise(StoryFileNotFoundException) if !File::exists?(filename)
+      @filename = filename
       @passages, current_passage = {}, nil
       @child_story_files = []
 
@@ -132,10 +133,12 @@ module Twee2
         end
         # SASS / SCSS
         if @passages[k][:tags].include? 'sass'
-          @passages[k][:content] =  Sass::Engine.new(@passages[k][:content], :syntax => :sass).render
+          opts = { :syntax => :sass, :load_paths => [ File.dirname(@filename) ] }
+          @passages[k][:content] =  Sass::Engine.new(@passages[k][:content], opts).render
         end
         if @passages[k][:tags].include? 'scss'
-          @passages[k][:content] =  Sass::Engine.new(@passages[k][:content], :syntax => :scss).render
+          opts = { :syntax => :scss, :load_paths => [ File.dirname(@filename) ] }
+          @passages[k][:content] =  Sass::Engine.new(@passages[k][:content], opts).render
         end
       end
     end
