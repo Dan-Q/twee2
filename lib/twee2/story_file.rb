@@ -99,6 +99,7 @@ module Twee2
                          'creator-version' => Twee2::VERSION,
                                         ifid: Twee2::build_config.story_ifid,
                                       format: '{{STORY_FORMAT}}',
+							  'format-version': '{{STORY_FORMAT_VERSION}}',
                                      options: ''
                       }) do
         @story_data.style(story_css, role: 'stylesheet', id: 'twine-user-stylesheet', type: 'text/twine-css')

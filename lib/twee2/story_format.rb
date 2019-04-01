@@ -9,6 +9,8 @@ module Twee2
       raise(StoryFormatNotFoundException) if !File::exists?(format_file_path = Twee2::buildpath("storyFormats/#{name}/format.js")) && !File::exists?(format_file_path = "#{name}/format.js")
       @name = name
       format_file = File::read(format_file_path)
+      @format_version = format_file.match(/(["'])version\1 *: *(["'])(.*?[^\\])\2/)[3]
+      @format_name = format_file.match(/(["'])name\1 *: *(["'])(.*?[^\\])\2/)[3]
       format_data = format_file.match(/(["'])source\1 *: *(["']).*?[^\\]\2/)[0]
       format_data_for_json = "\{#{format_data}\}"
       @source = JSON.parse(format_data_for_json)['source']
@@ -16,7 +18,7 @@ module Twee2
 
     # Given a story file, injects it into the StoryFormat and returns the HTML results
     def compile
-      @source.gsub('{{STORY_NAME}}', Twee2::build_config.story_name).gsub('{{STORY_DATA}}', Twee2::build_config.story_file.xmldata).gsub('{{STORY_FORMAT}}', @name)
+      @source.gsub('{{STORY_NAME}}', Twee2::build_config.story_name).gsub('{{STORY_DATA}}', Twee2::build_config.story_file.xmldata).gsub('{{STORY_FORMAT}}', @format_name).gsub('{{STORY_FORMAT_VERSION}}', @format_version)
     end
 
     # Returns an array containing the known StoryFormat names
