@@ -2,3 +2,4 @@ pkg/
 testdata/
 Gemfile.lock
 *~
+*.gem
